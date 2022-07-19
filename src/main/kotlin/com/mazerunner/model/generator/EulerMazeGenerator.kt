@@ -1,9 +1,9 @@
 package com.mazerunner.model.generator
 
 import com.mazerunner.model.layout.*
+import java.util.TreeSet
 import kotlin.random.Random
 
-// FIXME there is bug :(
 class EulerMazeGenerator(
     width: Int,
     height: Int,
@@ -13,7 +13,7 @@ class EulerMazeGenerator(
     private var maxIndex = 0
 
     private val withoutBottomBorderCount = HashMap<Int, Int>()
-    private val setMap = HashMap<Int, Int>()
+    private val setMap = HashMap<Int, TreeSet<Int>>()
 
     override fun initializeLayout(): MazeLayout {
         val mazeLayout = super.initializeLayout()
@@ -91,7 +91,7 @@ class EulerMazeGenerator(
 
             val oldSetIndex = minOf(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
             val newSetIndex = maxOf(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
-            if (Random.nextDouble() < eulerFactor || oldSetIndex == newSetIndex || setMap[newSetIndex] == oldSetIndex) {
+            if (Random.nextDouble() < eulerFactor || isSameSet(oldSetIndex, newSetIndex)) {
                 mazeLayout.setCurrentRoom(
                     rightRoom,
                     AdditionalInfo(rightRoomAdditionalInfo.index, EulerAlgorithmState.RIGHT_BORDER_ADDITION),
@@ -114,7 +114,7 @@ class EulerMazeGenerator(
                     (withoutBottomBorderCount[oldSetIndex] ?: 0) + 1
                 withoutBottomBorderCount[newSetIndex] =
                     (withoutBottomBorderCount[newSetIndex] ?: 1) - 1
-                setMap[newSetIndex] = oldSetIndex
+                mergeSets(oldSetIndex, newSetIndex)
             }
         }
     }
@@ -179,12 +179,12 @@ class EulerMazeGenerator(
 
             val oldSetIndex = minOf(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
             val newSetIndex = maxOf(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
-            if (oldSetIndex != newSetIndex && setMap[newSetIndex] != oldSetIndex) {
+            if (!isSameSet(oldSetIndex, newSetIndex)) {
                 currentRoom.toggleBorderTo(
                     rightRoom,
                     mazeLayout
                 )
-                setMap[newSetIndex] = oldSetIndex
+                mergeSets(oldSetIndex, newSetIndex)
             }
         }
 
@@ -204,7 +204,27 @@ class EulerMazeGenerator(
         }
     }
 
-    private fun getNextIndex() = ++maxIndex
+    private fun isSameSet(index1: Int, index2: Int): Boolean {
+        val set1 = setMap[index1] as Set<Int>
+        val set2 = setMap[index2] as Set<Int>
+        val intersection = TreeSet(set1)
+        intersection.retainAll(set2)
+        return intersection.size > 0
+    }
+
+    private fun mergeSets(index1: Int, index2: Int) {
+        val set1 = setMap[index1] as TreeSet<Int>
+        val set2 = setMap[index2] as TreeSet<Int>
+
+        set1.addAll(set2)
+        set2.addAll(set2)
+    }
+
+    private fun getNextIndex(): Int {
+        val nextIndex = ++maxIndex
+        setMap[nextIndex] = TreeSet(listOf(nextIndex))
+        return nextIndex
+    }
 
     private enum class EulerAlgorithmState {
         INDEXING,
