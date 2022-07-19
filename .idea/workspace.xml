@@ -4,39 +4,30 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb7e1b3-e263-4726-acf0-8df8c61fa904" name="Changes" comment="Initial commit">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/app/MazeRunnerApp.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/controller/grid/GridMazeController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/controller/grid/GridMazeRoomController.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/Maze.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/EulerMazeGenerator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/EulerMazeGeneratorFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/GridMazeGenerator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/GridMazeGeneratorFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/MazeGenerator.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/MazeGeneratorFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/GridMazeRoom.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/GridMazeRooms.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeDoor.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeDoorImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeLayout.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeLayoutImpl.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeLayouts.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeRoom.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/BFSMazeRunner.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/MazeRunner.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/RandomMazeRunner.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/MainView.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/ControlsStylesheet.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/MazeGeneratorSelectorFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragments.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeStylesheet.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeView.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="6cb7e1b3-e263-4726-acf0-8df8c61fa904" name="Changes" comment="Initial commit (last)">
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/BFSMazeRunnerFactory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/MazeRunnerFactory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/RandomMazeRunnerFactory.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/ControlsStylesheets.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/grid/GridMazeGeneratorControlsFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/grid/GridMazeGeneratorSelectorFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/grid/GridMazeRunnerControlsFragment.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/grid/GridMazeRunnerSelectorFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/controller/grid/GridMazeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/controller/grid/GridMazeController.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/EulerMazeGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/EulerMazeGenerator.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeLayouts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeLayouts.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/RandomMazeRunner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/RandomMazeRunner.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/MainView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/MainView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/ControlsStylesheet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/ControlsStylesheet.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/MazeGeneratorSelectorFragment.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragments.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragments.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeStylesheet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeStylesheet.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeView.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -71,31 +62,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;ssh.settings&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propCompiler"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout" />
       <recent name="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="com.mazerunner.view.controls.grid" />
       <recent name="com.mazerunner.model" />
       <recent name="com.mazerunner.model.runner" />
       <recent name="com.mazerunner.controller.grid" />
       <recent name="com.mazerunner.view.maze.grid" />
-      <recent name="com.mazerunner.view" />
     </key>
   </component>
   <component name="RunManager" selected="Kotlin.MazeRunnerAppKt">
@@ -144,6 +139,8 @@
       <workItem from="1658133832171" duration="4524000" />
       <workItem from="1658161959957" duration="343000" />
       <workItem from="1658162714168" duration="13000" />
+      <workItem from="1658172110553" duration="5250000" />
+      <workItem from="1658187346034" duration="5200000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1657895320362</created>
@@ -172,6 +169,11 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit" />
+    <MESSAGE value="Initial commit (last)" />
+    <option name="LAST_COMMIT_MESSAGE" value="Initial commit (last)" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

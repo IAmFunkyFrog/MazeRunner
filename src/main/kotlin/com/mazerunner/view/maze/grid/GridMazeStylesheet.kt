@@ -17,7 +17,7 @@ class GridMazeStylesheet : Stylesheet() {
             Color.WHITE,
             Color.YELLOW,
             Color.RED,
-            Color.PURPLE
+            Color.GRAY
         )
         val gridMazeRoomBackgrounds = (0..3).map {
             CssRule(".", "mazeRoomState$it")

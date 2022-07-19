@@ -8,6 +8,8 @@ import tornadofx.*
 class GridMazeView: View() {
     private val maze = Maze.getInstance()
 
-    override val root: Parent = mazeGrid(maze)
+    override val root: Parent = scrollpane(fitToWidth = true, fitToHeight = true) {
+        content = mazeGrid(maze)
+    }
 
 }

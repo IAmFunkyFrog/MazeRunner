@@ -1,7 +1,10 @@
 package com.mazerunner.view
 
 import com.mazerunner.controller.grid.GridMazeController
-import com.mazerunner.view.controls.MazeGeneratorSelectorFragment
+import com.mazerunner.view.controls.grid.GridMazeGeneratorControlsFragment
+import com.mazerunner.view.controls.grid.GridMazeGeneratorSelectorFragment
+import com.mazerunner.view.controls.grid.GridMazeRunnerControlsFragment
+import com.mazerunner.view.controls.grid.GridMazeRunnerSelectorFragment
 import com.mazerunner.view.maze.grid.GridMazeView
 import tornadofx.*
 
@@ -13,17 +16,10 @@ class MainView : View() {
     override val root = borderpane {
         center = gridMazeView.root
         left = vbox {
-            add(MazeGeneratorSelectorFragment())
-            button("Make turn") {
-                onLeftClick {
-                    gridMazeController.makeMazeRunnerTurn()
-                }
-            }
-            button("Make generator iteration") {
-                onLeftClick {
-                    gridMazeController.makeMazeGeneratorIteration()
-                }
-            }
+            add(GridMazeGeneratorSelectorFragment())
+            add(GridMazeGeneratorControlsFragment())
+            add(GridMazeRunnerSelectorFragment())
+            add(GridMazeRunnerControlsFragment())
         }
     }
 }

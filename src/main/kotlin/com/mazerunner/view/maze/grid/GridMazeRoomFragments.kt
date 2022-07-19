@@ -4,12 +4,13 @@ import com.mazerunner.model.layout.GridMazeRoom
 import com.mazerunner.model.Maze
 import javafx.event.EventTarget
 import javafx.geometry.Pos
+import javafx.scene.Node
 import javafx.scene.layout.ColumnConstraints
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.RowConstraints
 import tornadofx.*
 
-fun EventTarget.mazeGrid(maze: Maze, op: GridPane.() -> Unit = {}): GridPane {
+fun mazeGrid(maze: Maze, op: GridPane.() -> Unit = {}): GridPane {
     val width = maze.getMazeRooms().fold(0) { acc, gridMazeRoom ->
         if(gridMazeRoom !is GridMazeRoom) throw RuntimeException() // FIXME
         maxOf(acc, gridMazeRoom.x)
@@ -22,11 +23,11 @@ fun EventTarget.mazeGrid(maze: Maze, op: GridPane.() -> Unit = {}): GridPane {
 
     return GridPane().apply {
         for(i in 0 .. width) {
-            columnConstraints.add(ColumnConstraints(340.0))
+            columnConstraints.add(ColumnConstraints(50.0))
         }
 
         for(j in 0 .. height) {
-            rowConstraints.add(RowConstraints(160.0))
+            rowConstraints.add(RowConstraints(50.0))
         }
 
         for(i in 0..width) {
@@ -37,5 +38,5 @@ fun EventTarget.mazeGrid(maze: Maze, op: GridPane.() -> Unit = {}): GridPane {
         }
 
         alignment = Pos.CENTER
-    }.attachTo(this, op)
+    }
 }

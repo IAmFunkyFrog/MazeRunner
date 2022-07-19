@@ -3,6 +3,7 @@ package com.mazerunner.model.generator
 import com.mazerunner.model.layout.*
 import kotlin.random.Random
 
+// FIXME there is bug :(
 class EulerMazeGenerator(
     width: Int,
     height: Int,

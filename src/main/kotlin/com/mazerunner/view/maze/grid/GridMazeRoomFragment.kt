@@ -2,6 +2,7 @@ package com.mazerunner.view.maze.grid
 
 import com.mazerunner.controller.grid.GridMazeRoomController
 import com.mazerunner.model.layout.GridMazeRoom
+import com.mazerunner.model.layout.MazeRoomState
 import javafx.beans.property.SimpleStringProperty
 import javafx.scene.Parent
 import tornadofx.*
@@ -15,11 +16,11 @@ class GridMazeRoomFragment(
     private var lastChosenBorder = GridMazeStylesheet.gridMazeRoomBorders[gridMazeRoom.borderProperty.get()]
 
     // FIXME
-    private val debugText = SimpleStringProperty("MazeRoom")
+    private val innerText = SimpleStringProperty("")
 
     override val root: Parent = borderpane {
         center = label {
-            bind(debugText)
+            bind(innerText)
         }
     }
 
@@ -30,7 +31,8 @@ class GridMazeRoomFragment(
         gridMazeRoom.stateProperty.onChange {
             val state = it?.mazeRoomState ?: throw RuntimeException("MazeRoomStateWithInfo must be not null")
 
-            debugText.set(it.info.toString())
+            if(state == MazeRoomState.VISITED) innerText.set(it.info.toString())
+            else innerText.set("")
 
             root.removeClass(lastChosenBackground)
             lastChosenBackground = GridMazeStylesheet.gridMazeRoomBackgrounds[state.ordinal]

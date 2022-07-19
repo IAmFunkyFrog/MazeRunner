@@ -5,6 +5,8 @@ import kotlin.random.Random
 
 class RandomMazeRunner : MazeRunner {
 
+    private var lastVisitedIndex = 0
+
     override fun initOnRoom(mazeRoom: MazeRoom, mazeLayout: MazeLayout) {
         if(!mazeLayout.getRooms().contains(mazeRoom)) throw RuntimeException("Room expected to be in maze")
 
@@ -28,7 +30,7 @@ class RandomMazeRunner : MazeRunner {
 
         val randomRoom = seenRooms[Random.nextInt(0, seenRooms.size)]
 
-        mazeLayout.setCurrentRoom(randomRoom)
+        mazeLayout.setCurrentRoom(randomRoom, randomRoom.stateProperty.get().info, lastVisitedIndex++, MazeRoomState.VISITED)
 
         mazeLayout.getAdjoiningRooms(randomRoom).forEach {
             if(it.stateProperty.get().mazeRoomState == MazeRoomState.UNKNOWN) it.stateProperty.set(
