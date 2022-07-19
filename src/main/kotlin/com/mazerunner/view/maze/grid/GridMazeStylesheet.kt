@@ -8,6 +8,7 @@ class GridMazeStylesheet : Stylesheet() {
 
     companion object {
         private val gridMazeRoomBorderColor = Color.BLACK
+        private val borderWidthPx = 1.px
 
         val gridMazeRoomBorders = (0..15).map {
             CssRule(".", "border$it")
@@ -52,6 +53,12 @@ class GridMazeStylesheet : Stylesheet() {
                     if(index and 2 == 0) gridMazeRoomBackgroundColors[0] else gridMazeRoomBorderColor,
                     if(index and 4 == 0) gridMazeRoomBackgroundColors[0] else gridMazeRoomBorderColor,
                     if(index and 8 == 0) gridMazeRoomBackgroundColors[0] else gridMazeRoomBorderColor,
+                )
+                borderWidth += box(
+                    if(index and 1 == 0) 0.px else borderWidthPx,
+                    if(index and 2 == 0) 0.px else borderWidthPx,
+                    if(index and 4 == 0) 0.px else borderWidthPx,
+                    if(index and 8 == 0) 0.px else borderWidthPx
                 )
             }
             this.addSelection(selection)
