@@ -1,6 +1,8 @@
 package com.mazerunner.model.layout
 
-interface MazeDoor {
+import java.io.Externalizable
+
+interface MazeDoor : Externalizable {
 
     fun getRooms(): Pair<MazeRoom, MazeRoom>
 

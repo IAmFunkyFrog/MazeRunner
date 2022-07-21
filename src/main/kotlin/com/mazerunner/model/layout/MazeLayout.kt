@@ -2,13 +2,14 @@ package com.mazerunner.model.layout
 
 import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.ObservableList
+import java.io.Externalizable
 
 enum class MazeLayoutState {
     INITIALIZED,
     GENERATED
 }
 
-interface MazeLayout {
+interface MazeLayout : Externalizable {
 
     val stateProperty: SimpleObjectProperty<MazeLayoutState>
 

@@ -3,6 +3,9 @@ package com.mazerunner.model.layout
 import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.FXCollections
 import javafx.collections.ObservableList
+import java.io.IOException
+import java.io.ObjectInput
+import java.io.ObjectOutput
 
 class MazeLayoutImpl(
     rooms: List<MazeRoom> = emptyList(),
@@ -29,5 +32,45 @@ class MazeLayoutImpl(
         }
 
         doors.addAll(mazeDoors)
+    }
+
+    override fun writeExternal(objectOutput: ObjectOutput?) {
+        objectOutput?.apply {
+            write(stateProperty.get().ordinal)
+            write(rooms.size)
+            rooms.forEach {
+                it.writeExternal(objectOutput)
+            }
+            write(doors.size)
+            doors.forEach {
+                it.writeExternal(objectOutput)
+            }
+        }
+    }
+
+    override fun readExternal(objectInput: ObjectInput?) {
+        val hashToRoom = HashMap<Int, MazeRoom>()
+        objectInput?.apply {
+            val stateOrdinal = read()
+            stateProperty.set(MazeLayoutState.values()[stateOrdinal])
+
+            rooms.clear()
+            val roomCount = read()
+            for(i in 0 until roomCount) {
+                val hash = read()
+                val mazeRoom = deserializeMazeRoom(objectInput)
+                rooms.add(mazeRoom)
+                hashToRoom[hash] = mazeRoom
+            }
+
+            doors.clear()
+            val doorCount = read()
+            for(i in 0 until doorCount) {
+                val room1 = hashToRoom[read()] ?: throw IOException("Corrupted data")
+                val room2 = hashToRoom[read()] ?: throw IOException("Corrupted data")
+
+                doors.add(MazeDoorImpl(room1, room2))
+            }
+        }
     }
 }
