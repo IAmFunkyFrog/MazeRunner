@@ -1,19 +1,19 @@
 package com.mazerunner.model.generator
 
 import com.mazerunner.model.layout.*
+import java.util.*
 import kotlin.random.Random
 
-// FIXME there is bug :(
+// FIXME refactor me
 class EulerMazeGenerator(
     width: Int,
     height: Int,
-    private val eulerFactor: Double = 0.6
+    private val eulerFactor: Double = 0.6 // TODO make this parameter modifiable by user
 ) : GridMazeGenerator(width, height) {
 
     private var maxIndex = 0
 
-    private val withoutBottomBorderCount = HashMap<Int, Int>()
-    private val setMap = HashMap<Int, Int>()
+    private val indexToSet = HashMap<Int, MutableSet<Int>>()
 
     override fun initializeLayout(): MazeLayout {
         val mazeLayout = super.initializeLayout()
@@ -61,13 +61,11 @@ class EulerMazeGenerator(
         } else {
             val additionalInfo = rightRoom.stateProperty.get().info
             if (additionalInfo == null) {
-                val index = getNextIndex()
                 mazeLayout.setCurrentRoom(
                     rightRoom,
-                    AdditionalInfo(index, EulerAlgorithmState.INDEXING),
+                    AdditionalInfo(getNextIndex(), EulerAlgorithmState.INDEXING),
                     MazeRoomState.UNKNOWN
                 )
-                withoutBottomBorderCount[index] = (withoutBottomBorderCount[index] ?: 0) + 1
             } else mazeLayout.setCurrentRoom(rightRoom, MazeRoomState.UNKNOWN)
         }
     }
@@ -89,9 +87,7 @@ class EulerMazeGenerator(
             val currentRoomAdditionalInfo = currentRoom.stateProperty.get().info as AdditionalInfo
             val rightRoomAdditionalInfo = rightRoom.stateProperty.get().info as AdditionalInfo
 
-            val oldSetIndex = minOf(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
-            val newSetIndex = maxOf(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
-            if (Random.nextDouble() < eulerFactor || oldSetIndex == newSetIndex || setMap[newSetIndex] == oldSetIndex) {
+            if (Random.nextDouble() < eulerFactor || isSameSet(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)) {
                 mazeLayout.setCurrentRoom(
                     rightRoom,
                     AdditionalInfo(rightRoomAdditionalInfo.index, EulerAlgorithmState.RIGHT_BORDER_ADDITION),
@@ -99,22 +95,12 @@ class EulerMazeGenerator(
                 )
             } else {
                 currentRoom.toggleBorderTo(rightRoom, mazeLayout)
-                currentRoom.stateProperty.set(
-                    MazeRoomStateWithInfo(
-                        AdditionalInfo(oldSetIndex, currentRoomAdditionalInfo.state),
-                        currentRoom.stateProperty.get().mazeRoomState
-                    )
-                )
+                mergeSets(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
                 mazeLayout.setCurrentRoom(
                     rightRoom,
-                    AdditionalInfo(oldSetIndex, EulerAlgorithmState.RIGHT_BORDER_ADDITION),
+                    AdditionalInfo(rightRoomAdditionalInfo.index, EulerAlgorithmState.RIGHT_BORDER_ADDITION),
                     MazeRoomState.UNKNOWN
                 )
-                withoutBottomBorderCount[oldSetIndex] =
-                    (withoutBottomBorderCount[oldSetIndex] ?: 0) + 1
-                withoutBottomBorderCount[newSetIndex] =
-                    (withoutBottomBorderCount[newSetIndex] ?: 1) - 1
-                setMap[newSetIndex] = oldSetIndex
             }
         }
     }
@@ -125,12 +111,10 @@ class EulerMazeGenerator(
 
         val currentRoomAdditionalInfo = currentRoom.stateProperty.get().info as AdditionalInfo
         bottomRoom?.let {
-            if (Random.nextDouble() < eulerFactor &&
-                (withoutBottomBorderCount[currentRoomAdditionalInfo.index] ?: 0) > 1
+            val random = Random.nextDouble()
+            if (random >= eulerFactor ||
+                withoutBottomBorderCountInSet(currentRoom, mazeLayout) == 0
             ) {
-                withoutBottomBorderCount[currentRoomAdditionalInfo.index] =
-                    (withoutBottomBorderCount[currentRoomAdditionalInfo.index] ?: 1) - 1
-            } else {
                 currentRoom.toggleBorderTo(bottomRoom, mazeLayout)
             }
         }
@@ -156,14 +140,12 @@ class EulerMazeGenerator(
 
         if (bottomRoom != null) {
             if (currentRoom.hasBottomBorder()) {
-                val index = getNextIndex()
                 bottomRoom.stateProperty.set(
                     MazeRoomStateWithInfo(
                         AdditionalInfo(getNextIndex(), EulerAlgorithmState.RIGHT_BORDER_ADDITION),
                         MazeRoomState.UNKNOWN
                     )
                 )
-                withoutBottomBorderCount[index] = (withoutBottomBorderCount[index] ?: 0) + 1
             } else {
                 bottomRoom.stateProperty.set(
                     MazeRoomStateWithInfo(
@@ -177,14 +159,18 @@ class EulerMazeGenerator(
         } else if (rightRoom != null) {
             val rightRoomAdditionalInfo = rightRoom.stateProperty.get().info as AdditionalInfo
 
-            val oldSetIndex = minOf(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
-            val newSetIndex = maxOf(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
-            if (oldSetIndex != newSetIndex && setMap[newSetIndex] != oldSetIndex) {
+            if (!isSameSet(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)) {
                 currentRoom.toggleBorderTo(
                     rightRoom,
                     mazeLayout
                 )
-                setMap[newSetIndex] = oldSetIndex
+                mergeSets(currentRoomAdditionalInfo.index, rightRoomAdditionalInfo.index)
+                rightRoom.stateProperty.set(
+                    MazeRoomStateWithInfo(
+                        AdditionalInfo(rightRoomAdditionalInfo.index, rightRoomAdditionalInfo.state),
+                        rightRoom.stateProperty.get().mazeRoomState
+                    )
+                )
             }
         }
 
@@ -204,7 +190,51 @@ class EulerMazeGenerator(
         }
     }
 
-    private fun getNextIndex() = ++maxIndex
+    private fun isSameSet(index1: Int, index2: Int): Boolean {
+        val set1 = indexToSet[index1] as Set<Int>
+        val set2 = indexToSet[index2] as Set<Int>
+        return set1.fold(true) { acc, index -> if(!acc) acc else set2.contains(index)} &&
+                set2.fold(true) { acc, index -> if(!acc) acc else set1.contains(index)}
+    }
+
+    private fun mergeSets(index1: Int, index2: Int) {
+        indexToSet[index1]!!.forEach { i1 ->
+            indexToSet[index2]!!.forEach { i2 ->
+                if(i1 != index1) indexToSet[i1]!!.add(i2)
+                if(i2 != index2) indexToSet[i2]!!.add(i1)
+            }
+        }
+        indexToSet[index1]!!.add(index2)
+        indexToSet[index2]!!.add(index1)
+
+        indexToSet[index1]!!.forEach {
+            indexToSet[index2]!!.add(it)
+        }
+
+        indexToSet[index2]!!.forEach {
+            indexToSet[index1]!!.add(it)
+        }
+    }
+
+    private fun withoutBottomBorderCountInSet(currentRoom: GridMazeRoom, mazeLayout: MazeLayout): Int {
+        return mazeLayout.getRooms().fold(0) { acc, room ->
+            if(room !is GridMazeRoom) throw RuntimeException("Should not reach")
+
+            val currentRoomAdditionalInfo = currentRoom.stateProperty.get().info as AdditionalInfo
+            if(room.y == currentRoom.y) {
+                val roomAdditionalInfo = room.stateProperty.get().info as AdditionalInfo
+                if(isSameSet(currentRoomAdditionalInfo.index, roomAdditionalInfo.index) && !room.hasBottomBorder()) acc + 1
+                else acc
+            }
+            else acc
+        }
+    }
+
+    private fun getNextIndex(): Int {
+        val index = ++maxIndex
+        indexToSet[index] = TreeSet<Int>(listOf(index))
+        return index
+    }
 
     private enum class EulerAlgorithmState {
         INDEXING,
@@ -216,7 +246,7 @@ class EulerMazeGenerator(
     private data class AdditionalInfo(val index: Int, val state: EulerAlgorithmState)
 
     private companion object {
-        // FIXME need to extrct all extensions functions to other file
+        // FIXME need to extract all extensions functions to other file
         private fun GridMazeRoom.getRightRoom(mazeLayout: MazeLayout) = mazeLayout.getRooms().firstOrNull {
             it is GridMazeRoom && it.x - 1 == this.x && it.y == this.y
         }
