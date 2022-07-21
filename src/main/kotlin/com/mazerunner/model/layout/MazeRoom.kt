@@ -11,8 +11,8 @@ enum class MazeRoomState {
 
 data class MazeRoomStateWithInfo<T>(val info: T?, val mazeRoomState: MazeRoomState)
 
-open class MazeRoom {
+interface MazeRoom {
 
-    val stateProperty: SimpleObjectProperty<MazeRoomStateWithInfo<*>> = SimpleObjectProperty(MazeRoomStateWithInfo<Any>(null, MazeRoomState.UNKNOWN))
+    val stateProperty: SimpleObjectProperty<MazeRoomStateWithInfo<*>>
 
 }

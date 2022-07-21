@@ -1,6 +1,7 @@
 package com.mazerunner.model.layout
 
 import javafx.beans.property.SimpleIntegerProperty
+import javafx.beans.property.SimpleObjectProperty
 
 // GradMazeRoom can have 4 borders
 // There are (each border coded as binary number):
@@ -14,6 +15,9 @@ import javafx.beans.property.SimpleIntegerProperty
 class GridMazeRoom(
     val x: Int,
     val y: Int,
-) : MazeRoom() {
+) : MazeRoom {
+
+    override val stateProperty: SimpleObjectProperty<MazeRoomStateWithInfo<*>> = SimpleObjectProperty(MazeRoomStateWithInfo<Any>(null, MazeRoomState.UNKNOWN))
+
     val borderProperty = SimpleIntegerProperty(15)
 }
