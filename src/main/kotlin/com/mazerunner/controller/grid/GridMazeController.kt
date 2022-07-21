@@ -1,5 +1,6 @@
 package com.mazerunner.controller.grid
 
+import com.mazerunner.controller.MazeController
 import com.mazerunner.model.Maze
 import com.mazerunner.model.generator.GridMazeGeneratorFactory
 import com.mazerunner.model.layout.MazeLayoutState
@@ -11,7 +12,7 @@ import javafx.scene.control.ScrollPane
 import javafx.scene.layout.BorderPane
 import tornadofx.*
 
-class GridMazeController : Controller() {
+class GridMazeController : Controller(), MazeController {
     private val maze = Maze.getInstance()
     private val gridMazeView: GridMazeView by inject()
 
@@ -22,8 +23,7 @@ class GridMazeController : Controller() {
     fun onMazeGeneratorChange(width: Int, height: Int, gridMazeGeneratorFactory: GridMazeGeneratorFactory) {
         maze.mazeGenerator = gridMazeGeneratorFactory.makeMazeGenerator(width, height)
         maze.initializeMazeGeneratorLayout()
-        if(gridMazeView.root  !is ScrollPane) throw RuntimeException("Should not reach")
-        (gridMazeView.root as ScrollPane).content = mazeGrid(maze)
+        rewriteMaze()
     }
 
     fun onMazeRunnerChange(mazeRunnerFactory: MazeRunnerFactory) {
@@ -33,5 +33,10 @@ class GridMazeController : Controller() {
         }?.let {
             if(maze.mazeLayoutStateProperty.get() == MazeLayoutState.GENERATED) maze.setMazeRunnerOnRoom(it)
         }
+    }
+
+    override fun rewriteMaze() {
+        if(gridMazeView.root  !is ScrollPane) throw RuntimeException("Should not reach")
+        (gridMazeView.root as ScrollPane).content = mazeGrid(maze)
     }
 }

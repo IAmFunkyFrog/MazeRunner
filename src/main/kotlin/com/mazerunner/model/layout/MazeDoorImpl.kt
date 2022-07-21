@@ -14,8 +14,8 @@ class MazeDoorImpl(
 
     override fun writeExternal(objectOutput: ObjectOutput?) {
         objectOutput?.apply {
-            write(room1.hashCode())
-            write(room2.hashCode())
+            writeInt(room1.hashCode())
+            writeInt(room2.hashCode())
         }
     }
 

@@ -36,38 +36,39 @@ class MazeLayoutImpl(
 
     override fun writeExternal(objectOutput: ObjectOutput?) {
         objectOutput?.apply {
-            write(stateProperty.get().ordinal)
-            write(rooms.size)
+            writeInt(stateProperty.get().ordinal)
+            writeInt(rooms.size)
             rooms.forEach {
                 it.writeExternal(objectOutput)
             }
-            write(doors.size)
+            writeInt(doors.size)
             doors.forEach {
                 it.writeExternal(objectOutput)
             }
+            flush()
         }
     }
 
     override fun readExternal(objectInput: ObjectInput?) {
         val hashToRoom = HashMap<Int, MazeRoom>()
         objectInput?.apply {
-            val stateOrdinal = read()
-            stateProperty.set(MazeLayoutState.values()[stateOrdinal])
+            val stateOrdinal = readInt()
+            stateProperty.set(MazeLayoutState.GENERATED) // FIXME use stateOrdinal to reset old state
 
             rooms.clear()
-            val roomCount = read()
+            val roomCount = readInt()
             for(i in 0 until roomCount) {
-                val hash = read()
+                val hash = readInt()
                 val mazeRoom = deserializeMazeRoom(objectInput)
                 rooms.add(mazeRoom)
                 hashToRoom[hash] = mazeRoom
             }
 
             doors.clear()
-            val doorCount = read()
+            val doorCount = readInt()
             for(i in 0 until doorCount) {
-                val room1 = hashToRoom[read()] ?: throw IOException("Corrupted data")
-                val room2 = hashToRoom[read()] ?: throw IOException("Corrupted data")
+                val room1 = hashToRoom[readInt()] ?: throw IOException("Corrupted data")
+                val room2 = hashToRoom[readInt()] ?: throw IOException("Corrupted data")
 
                 doors.add(MazeDoorImpl(room1, room2))
             }
