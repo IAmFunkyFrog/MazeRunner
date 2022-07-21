@@ -1,4 +1,4 @@
-package com.mazerunner.view.controls.grid
+package com.mazerunner.view.controls.leftbar.grid
 
 import com.mazerunner.controller.grid.GridMazeController
 import com.mazerunner.view.controls.ControlsStylesheet
@@ -6,23 +6,22 @@ import com.mazerunner.view.controls.space
 import javafx.scene.Parent
 import tornadofx.*
 
-class GridMazeRunnerControlsFragment : Fragment() {
+class GridMazeGeneratorControlsFragment : Fragment() {
 
     private val controller: GridMazeController by inject()
 
     override val root: Parent = vbox {
         addClass(ControlsStylesheet.comboboxWithLabel)
-        button("Make runner iteration") {
+        button("Make generator iteration") {
             setOnAction {
-                controller.makeMazeRunnerTurn()
+                controller.makeMazeGeneratorIteration()
             }
         }
         space(15.0, 0.0)
-        button("Explore maze") {
+        button("Generate all maze") {
             setOnAction {
-                while(controller.makeMazeRunnerTurn()) {}
+                while(controller.makeMazeGeneratorIteration()) {}
             }
         }
     }
-
 }

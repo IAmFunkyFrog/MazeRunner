@@ -1,4 +1,4 @@
-package com.mazerunner.view.controls.grid
+package com.mazerunner.view.controls.leftbar.grid
 
 import com.mazerunner.controller.grid.GridMazeController
 import com.mazerunner.model.runner.BFSMazeRunnerFactory

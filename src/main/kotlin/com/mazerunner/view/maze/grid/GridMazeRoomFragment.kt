@@ -15,7 +15,6 @@ class GridMazeRoomFragment(
     private var lastChosenBackground = GridMazeStylesheet.gridMazeRoomBackgrounds[gridMazeRoom.stateProperty.get().mazeRoomState.ordinal]
     private var lastChosenBorder = GridMazeStylesheet.gridMazeRoomBorders[gridMazeRoom.borderProperty.get()]
 
-    // FIXME
     private val innerText = SimpleStringProperty("")
 
     override val root: Parent = borderpane {
