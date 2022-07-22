@@ -14,8 +14,7 @@ class Maze private constructor(
     var mazeRunner: MazeRunner,
     var mazeGenerator: MazeGenerator
 ) {
-    val mazeLayoutStateProperty: SimpleObjectProperty<MazeLayoutState>
-        get() = mazeLayout.stateProperty
+    val mazeLayoutStateProperty: SimpleObjectProperty<MazeLayoutState> = SimpleObjectProperty(MazeLayoutState.INITIALIZED)
 
     fun getMazeRooms() = mazeLayout.getRooms()
 
@@ -39,7 +38,12 @@ class Maze private constructor(
 
     fun initializeMazeGeneratorLayout(onInitialize: (Maze) -> Unit = {}) {
         mazeLayout = mazeGenerator.initializeLayout()
+        mazeLayoutStateProperty.bind(mazeLayout.stateProperty)
         onInitialize(this)
+    }
+
+    fun setMazeLayoutGenerated() {
+        mazeLayout.stateProperty.set(MazeLayoutState.GENERATED)
     }
 
     fun makeMazeGeneratorIteration() = mazeGenerator.makeGeneratorIteration(mazeLayout)

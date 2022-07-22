@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane
 import tornadofx.*
 
 class GridMazeController : Controller(), MazeController {
+
     private val maze = Maze.getInstance()
     private val gridMazeView: GridMazeView by inject()
 
@@ -33,6 +34,10 @@ class GridMazeController : Controller(), MazeController {
         }?.let {
             if(maze.mazeLayoutStateProperty.get() == MazeLayoutState.GENERATED) maze.setMazeRunnerOnRoom(it)
         }
+    }
+
+    override fun setMazeLayoutGenerated() { // FIXME this method could be one for all types of maze
+        maze.setMazeLayoutGenerated()
     }
 
     override fun rewriteMaze() {
