@@ -4,10 +4,8 @@ import com.mazerunner.controller.grid.GridMazeController
 import com.mazerunner.model.Maze
 import javafx.scene.Parent
 import tornadofx.*
-import java.io.BufferedWriter
-import java.io.FileWriter
 
-class TopMenu : Fragment() {
+class TopBar : Fragment() {
 
     private val controller: GridMazeController by inject() // TODO make more universal for other types of maze
     private val maze = Maze.getInstance()
