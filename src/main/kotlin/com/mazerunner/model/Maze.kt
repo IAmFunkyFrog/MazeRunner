@@ -3,7 +3,6 @@ package com.mazerunner.model
 import com.mazerunner.model.generator.EulerMazeGenerator
 import com.mazerunner.model.generator.MazeGenerator
 import com.mazerunner.model.layout.*
-import com.mazerunner.model.runner.BFSMazeRunner
 import com.mazerunner.model.runner.MazeRunner
 import com.mazerunner.model.runner.RandomMazeRunner
 import javafx.beans.property.SimpleObjectProperty
@@ -44,9 +43,18 @@ class Maze private constructor(
 
     fun setMazeLayoutGenerated() {
         mazeLayout.stateProperty.set(MazeLayoutState.GENERATED)
+        mazeLayout.getRooms().forEach {
+            if(it.stateProperty.get().mazeRoomState == MazeRoomState.CURRENT) it.stateProperty.set(
+                MazeRoomStateWithInfo(it.stateProperty.get().info, MazeRoomState.UNKNOWN)
+            )
+        }
     }
 
-    fun makeMazeGeneratorIteration() = mazeGenerator.makeGeneratorIteration(mazeLayout)
+    fun makeMazeGeneratorIteration(): Boolean {
+        val returnValue = mazeGenerator.makeGeneratorIteration(mazeLayout)
+        if(mazeLayout.stateProperty.get() == MazeLayoutState.GENERATED) setMazeLayoutGenerated()
+        return returnValue
+    }
 
     fun saveInFile(file: File) {
         val stream = FileOutputStream(file)

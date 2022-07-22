@@ -109,7 +109,6 @@ class EulerMazeGenerator(
         val rightRoom = currentRoom.getRightRoom(mazeLayout) as GridMazeRoom?
         val bottomRoom = currentRoom.getBottomRoom(mazeLayout) as GridMazeRoom?
 
-        val currentRoomAdditionalInfo = currentRoom.stateProperty.get().info as AdditionalInfo
         bottomRoom?.let {
             val random = Random.nextDouble()
             if (random >= eulerFactor ||
@@ -175,12 +174,7 @@ class EulerMazeGenerator(
         }
 
         if (rightRoom == null) {
-            if (bottomRoom == null) {
-                mazeLayout.stateProperty.set(MazeLayoutState.GENERATED)
-                currentRoom.stateProperty.set(
-                    MazeRoomStateWithInfo(currentRoomAdditionalInfo, MazeRoomState.UNKNOWN)
-                )
-            }
+            if (bottomRoom == null) mazeLayout.stateProperty.set(MazeLayoutState.GENERATED)
             else {
                 val first = bottomRoom.getFirstRoomInRow(mazeLayout)
                 mazeLayout.setCurrentRoom(first, MazeRoomState.UNKNOWN)

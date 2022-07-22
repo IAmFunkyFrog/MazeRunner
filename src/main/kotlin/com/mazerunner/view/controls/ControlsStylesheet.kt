@@ -1,15 +1,15 @@
 package com.mazerunner.view.controls
 
-import javafx.scene.paint.Color
 import javafx.scene.text.FontWeight
-import tornadofx.*
+import tornadofx.Stylesheet
+import tornadofx.box
+import tornadofx.cssclass
+import tornadofx.px
 
 class ControlsStylesheet : Stylesheet() {
 
     companion object {
         val comboboxWithLabel by cssclass()
-
-        val spacerHeight = 10.0
     }
 
     init {
@@ -19,7 +19,6 @@ class ControlsStylesheet : Stylesheet() {
                 fontWeight = FontWeight.BOLD
             }
             padding = box(20.px)
-            borderColor += box(Color.BLACK) // FIXME test code
         }
     }
 
