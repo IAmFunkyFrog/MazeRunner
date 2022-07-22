@@ -12,14 +12,9 @@ import javafx.scene.control.ScrollPane
 import javafx.scene.layout.BorderPane
 import tornadofx.*
 
-class GridMazeController : Controller(), MazeController {
+class GridMazeController : MazeController() {
 
-    private val maze = Maze.getInstance()
     private val gridMazeView: GridMazeView by inject()
-
-    fun makeMazeRunnerTurn() = maze.makeMazeRunnerTurn()
-
-    fun makeMazeGeneratorIteration() = maze.makeMazeGeneratorIteration()
 
     fun onMazeGeneratorChange(width: Int, height: Int, gridMazeGeneratorFactory: GridMazeGeneratorFactory) {
         maze.mazeGenerator = gridMazeGeneratorFactory.makeMazeGenerator(width, height)
@@ -34,10 +29,6 @@ class GridMazeController : Controller(), MazeController {
         }?.let {
             if(maze.mazeLayoutStateProperty.get() == MazeLayoutState.GENERATED) maze.setMazeRunnerOnRoom(it)
         }
-    }
-
-    override fun setMazeLayoutGenerated() { // FIXME this method could be one for all types of maze
-        maze.setMazeLayoutGenerated()
     }
 
     override fun rewriteMaze() {

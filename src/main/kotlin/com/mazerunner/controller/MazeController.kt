@@ -1,9 +1,18 @@
 package com.mazerunner.controller
 
-interface MazeController {
+import com.mazerunner.model.Maze
+import tornadofx.Controller
 
-    fun setMazeLayoutGenerated()
+abstract class MazeController : Controller() {
 
-    fun rewriteMaze()
+    protected val maze = Maze.getInstance()
+
+    fun makeMazeRunnerTurn() = maze.makeMazeRunnerTurn()
+
+    fun makeMazeGeneratorIteration() = maze.makeMazeGeneratorIteration()
+    fun setMazeLayoutGenerated() {
+        maze.setMazeLayoutGenerated()
+    }
+    abstract fun rewriteMaze()
 
 }
