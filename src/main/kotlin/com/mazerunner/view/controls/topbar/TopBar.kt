@@ -2,7 +2,9 @@ package com.mazerunner.view.controls.topbar
 
 import com.mazerunner.controller.grid.GridMazeController
 import com.mazerunner.model.Maze
+import com.mazerunner.view.maze.grid.GridMazeHelpFragment
 import javafx.scene.Parent
+import javafx.stage.StageStyle
 import tornadofx.*
 
 class TopBar : Fragment() {
@@ -29,6 +31,13 @@ class TopBar : Fragment() {
                         maze.loadFromFile(file)
                         controller.rewriteMaze()
                     }
+                }
+            }
+        }
+        menu("Help") {
+            item(name = "Show controls", "Ctrl+H") {
+                setOnAction {
+                    find<GridMazeHelpFragment>().openModal(stageStyle = StageStyle.UTILITY)
                 }
             }
         }
