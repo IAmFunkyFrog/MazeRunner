@@ -2,7 +2,8 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("jvm") version "1.6.21"
-    id("org.openjfx.javafxplugin") version "0.0.8"
+    id("org.openjfx.javafxplugin") version "0.0.13"
+    application
 }
 
 group = "org.example"
@@ -15,12 +16,21 @@ repositories {
     }
 }
 
+application {
+    mainClass.set("com.mazerunner.app.MazeRunnerApp")
+}
+
 dependencies {
     testImplementation(kotlin("test"))
     implementation("no.tornado:tornadofx:2.0.0-SNAPSHOT")
-    javafx {
-        modules("javafx.controls", "javafx.fxml")
-    }
+}
+
+javafx {
+    modules("javafx.controls")
+}
+
+java {
+    modularity.inferModulePath.set(true)
 }
 
 tasks.test {

@@ -4,30 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb7e1b3-e263-4726-acf0-8df8c61fa904" name="Changes" comment="Initial commit (last)">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/Project.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/BFSMazeRunnerFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/MazeRunnerFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/RandomMazeRunnerFactory.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/ControlsStylesheets.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/grid/GridMazeGeneratorControlsFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/grid/GridMazeGeneratorSelectorFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/grid/GridMazeRunnerControlsFragment.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/grid/GridMazeRunnerSelectorFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="6cb7e1b3-e263-4726-acf0-8df8c61fa904" name="Changes" comment="[Feature] Added &quot;Help&quot; button to topbar">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/main_screen.gif" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/screenshots/main_screen.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/controller/grid/GridMazeController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/controller/grid/GridMazeController.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/EulerMazeGenerator.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/generator/EulerMazeGenerator.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeLayouts.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/MazeLayouts.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/RandomMazeRunner.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/runner/RandomMazeRunner.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/MainView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/MainView.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/ControlsStylesheet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/ControlsStylesheet.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/MazeGeneratorSelectorFragment.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragment.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragments.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeRoomFragments.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeStylesheet.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeStylesheet.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeView.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/maze/grid/GridMazeView.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,17 +21,60 @@
       <ProjectState />
     </projectState>
   </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <task path="$PROJECT_DIR$">
+          <activation />
+        </task>
+        <projects_view>
+          <tree_state>
+            <expand>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MazeRunner" type="f1a62948:ProjectNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MazeRunner" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MazeRunner" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="application" type="c8890929:TasksNode$1" />
+              </path>
+              <path>
+                <item name="" type="6a2764b6:ExternalProjectsStructure$RootNode" />
+                <item name="MazeRunner" type="f1a62948:ProjectNode" />
+                <item name="Tasks" type="e4a08cd1:TasksNode" />
+                <item name="build setup" type="c8890929:TasksNode$1" />
+              </path>
+            </expand>
+            <select />
+          </tree_state>
+        </projects_view>
+      </state>
+    </system>
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
-        <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Interface" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="master" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -62,24 +87,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "SDKs",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propCompiler"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout" />
@@ -93,13 +118,111 @@
       <recent name="com.mazerunner.view.maze.grid" />
     </key>
   </component>
-  <component name="RunManager" selected="Kotlin.MazeRunnerAppKt">
-    <configuration name="MazeRunnerAppKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.mazerunner.app.MazeRunnerAppKt" />
-      <module name="MazeRunner.main" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
+  <component name="RunManager" selected="Gradle.MazeRunner [run]">
+    <configuration name="MazeRunner [buildKotlinToolingMetadata]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="buildKotlinToolingMetadata" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MazeRunner [init]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="init" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MazeRunner [jar]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="jar" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MazeRunner [run]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="run" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="MazeRunner [wrapper]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value="wrapper" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>true</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
     </configuration>
     <configuration name="com.mazerunner.app.MazeRunnerApp" type="TORNADOFX_RUNCONFIGURATION" nameIsGenerated="true" run-type="App" live-views="false" live-stylesheets="false" dump-stylesheets="false">
       <option name="MAIN_CLASS_NAME" value="com.mazerunner.app.MazeRunnerApp" />
@@ -109,11 +232,19 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Kotlin.MazeRunnerAppKt" />
+      <item itemvalue="Gradle.MazeRunner [buildKotlinToolingMetadata]" />
+      <item itemvalue="Gradle.MazeRunner [init]" />
+      <item itemvalue="Gradle.MazeRunner [jar]" />
+      <item itemvalue="Gradle.MazeRunner [run]" />
+      <item itemvalue="Gradle.MazeRunner [wrapper]" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Kotlin.MazeRunnerAppKt" />
+        <item itemvalue="Gradle.MazeRunner [run]" />
+        <item itemvalue="Gradle.MazeRunner [jar]" />
+        <item itemvalue="Gradle.MazeRunner [init]" />
+        <item itemvalue="Gradle.MazeRunner [wrapper]" />
+        <item itemvalue="Gradle.MazeRunner [buildKotlinToolingMetadata]" />
       </list>
     </recent_temporary>
   </component>
@@ -141,6 +272,11 @@
       <workItem from="1658162714168" duration="13000" />
       <workItem from="1658172110553" duration="5250000" />
       <workItem from="1658187346034" duration="5200000" />
+      <workItem from="1658419792422" duration="2619000" />
+      <workItem from="1658422416055" duration="12050000" />
+      <workItem from="1658486792564" duration="615000" />
+      <workItem from="1658492292955" duration="8000" />
+      <workItem from="1658493414725" duration="10280000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1657895320362</created>
@@ -149,7 +285,84 @@
       <option name="project" value="LOCAL" />
       <updated>1657895320362</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="[Fix] Fixed Euler algorithm bug">
+      <created>1658400926812</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1658400926812</updated>
+    </task>
+    <task id="LOCAL-00003" summary="[Refactor] Change directories">
+      <created>1658420686063</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1658420686063</updated>
+    </task>
+    <task id="LOCAL-00004" summary="[Refactor] Change &quot;open class&quot; to &quot;interface&quot;">
+      <created>1658421216809</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1658421216809</updated>
+    </task>
+    <task id="LOCAL-00005" summary="[Refactor] Delete redundant code">
+      <created>1658426297422</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1658426297422</updated>
+    </task>
+    <task id="LOCAL-00006" summary="[Refactor] Added serialization of MazeLayout">
+      <created>1658431938028</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1658431938028</updated>
+    </task>
+    <task id="LOCAL-00007" summary="[Feature] Fixed serialization of MazeLayout; Added save\load of maze feature initial implementation">
+      <created>1658436524541</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1658436524541</updated>
+    </task>
+    <task id="LOCAL-00008" summary="[Feature] Added disable of controls that can`t be used">
+      <created>1658480244163</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1658480244163</updated>
+    </task>
+    <task id="LOCAL-00009" summary="[Fix] After generating set all rooms status to unknown">
+      <created>1658493807789</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1658493807789</updated>
+    </task>
+    <task id="LOCAL-00010" summary="[Refactor] Rename">
+      <created>1658493940992</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1658493940992</updated>
+    </task>
+    <task id="LOCAL-00011" summary="[Feature] Added LeftBar.kt">
+      <created>1658495338762</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1658495338762</updated>
+    </task>
+    <task id="LOCAL-00012" summary="[Feature] Added &quot;Help&quot; button to topbar">
+      <created>1658498255306</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1658498255306</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -160,7 +373,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="develop" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -170,7 +395,18 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Initial commit" />
     <MESSAGE value="Initial commit (last)" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial commit (last)" />
+    <MESSAGE value="[Fix] Fixed Euler algorithm bug" />
+    <MESSAGE value="[Refactor] Change directories" />
+    <MESSAGE value="[Refactor] Change &quot;open class&quot; to &quot;interface&quot;" />
+    <MESSAGE value="[Refactor] Delete redundant code" />
+    <MESSAGE value="[Feature] Added serialization of MazeLayout" />
+    <MESSAGE value="[Feature] Fixed serialization of MazeLayout; Added save\load of maze feature initial implementation" />
+    <MESSAGE value="[Feature] Added disable of controls that can`t be used" />
+    <MESSAGE value="[Fix] After generating set all rooms status to unknown" />
+    <MESSAGE value="[Refactor] Rename" />
+    <MESSAGE value="[Feature] Added LeftBar.kt" />
+    <MESSAGE value="[Feature] Added &quot;Help&quot; button to topbar" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feature] Added &quot;Help&quot; button to topbar" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
