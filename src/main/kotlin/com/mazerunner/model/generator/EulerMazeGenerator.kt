@@ -175,7 +175,12 @@ class EulerMazeGenerator(
         }
 
         if (rightRoom == null) {
-            if (bottomRoom == null) mazeLayout.stateProperty.set(MazeLayoutState.GENERATED)
+            if (bottomRoom == null) {
+                mazeLayout.stateProperty.set(MazeLayoutState.GENERATED)
+                currentRoom.stateProperty.set(
+                    MazeRoomStateWithInfo(currentRoomAdditionalInfo, MazeRoomState.UNKNOWN)
+                )
+            }
             else {
                 val first = bottomRoom.getFirstRoomInRow(mazeLayout)
                 mazeLayout.setCurrentRoom(first, MazeRoomState.UNKNOWN)
