@@ -1,7 +1,6 @@
 package com.mazerunner.controller.grid
 
 import com.mazerunner.controller.MazeController
-import com.mazerunner.model.Maze
 import com.mazerunner.model.generator.GridMazeGeneratorFactory
 import com.mazerunner.model.layout.MazeLayoutState
 import com.mazerunner.model.layout.MazeRoomState
@@ -9,8 +8,6 @@ import com.mazerunner.model.runner.MazeRunnerFactory
 import com.mazerunner.view.maze.grid.GridMazeView
 import com.mazerunner.view.maze.grid.mazeGrid
 import javafx.scene.control.ScrollPane
-import javafx.scene.layout.BorderPane
-import tornadofx.*
 
 class GridMazeController : MazeController() {
 
