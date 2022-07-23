@@ -9,7 +9,9 @@ import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.FXCollections
 import javafx.scene.Parent
+import javafx.scene.control.TextFormatter
 import tornadofx.*
+import java.util.function.UnaryOperator
 
 class GridMazeGeneratorSelectorFragment : Fragment() {
 
@@ -28,9 +30,26 @@ class GridMazeGeneratorSelectorFragment : Fragment() {
     private val mazeHeight = SimpleIntegerProperty(5)
 
     init {
+        controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), factories.first())
+    }
+
+    init {
         selectedGenerator.get()?.let {
             controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), it)
         }
+    }
+
+    private val intFilter = UnaryOperator<TextFormatter.Change> {
+        when {
+            it.isReplaced -> {
+                if(!it.text.matches(Regex("^\\d+"))) it.text = it.controlText
+            }
+            it.isAdded -> {
+                if(!it.text.matches(Regex("^\\d+"))) it.text = ""
+            }
+        }
+
+        it
     }
 
     override val root: Parent = vbox {
@@ -49,17 +68,27 @@ class GridMazeGeneratorSelectorFragment : Fragment() {
         hbox {
             textfield {
                 bind(mazeWidth)
+                textFormatter = TextFormatter<Int>(intFilter)
             }
             textfield {
                 bind(mazeHeight)
+                textFormatter = TextFormatter<Int>(intFilter)
             }
         }
         space(15.0, 0.0)
-        button("Resize grid") {
+        button("Reset grid") {
             setOnAction {
                 selectedGenerator.get()?.let {
                     controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), it)
                 }
+            }
+            mazeWidth.onChange {
+                if(it <= 0) disableProperty().set(true)
+                else disableProperty().set(false)
+            }
+            mazeHeight.onChange {
+                if(it <= 0) disableProperty().set(true)
+                else disableProperty().set(false)
             }
         }
     }
