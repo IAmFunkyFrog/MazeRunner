@@ -29,23 +29,25 @@ class GridMazeGeneratorSelectorFragment : Fragment() {
     private val mazeWidth = SimpleIntegerProperty(5) // FIXME hardcode is bad decision
     private val mazeHeight = SimpleIntegerProperty(5)
 
+    private val cellWidth = SimpleIntegerProperty(GridMazeController.defaultCellWidth.toInt())
+
     init {
-        controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), factories.first())
+        controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), cellWidth.get().toDouble(), factories.first())
     }
 
     init {
         selectedGenerator.get()?.let {
-            controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), it)
+            controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), cellWidth.get().toDouble(), it)
         }
     }
 
     private val intFilter = UnaryOperator<TextFormatter.Change> {
         when {
             it.isReplaced -> {
-                if(!it.text.matches(Regex("^\\d+"))) it.text = it.controlText
+                if (!it.text.matches(Regex("^\\d+"))) it.text = it.controlText
             }
             it.isAdded -> {
-                if(!it.text.matches(Regex("^\\d+"))) it.text = ""
+                if (!it.text.matches(Regex("^\\d+"))) it.text = ""
             }
         }
 
@@ -60,7 +62,7 @@ class GridMazeGeneratorSelectorFragment : Fragment() {
             selectionModel.selectFirst()
             setOnAction {
                 selectedGenerator.get()?.let {
-                    controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), it)
+                    controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), cellWidth.get().toDouble(), it)
                 }
             }
         }
@@ -79,15 +81,32 @@ class GridMazeGeneratorSelectorFragment : Fragment() {
         button("Reset grid") {
             setOnAction {
                 selectedGenerator.get()?.let {
-                    controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), it)
+                    controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), cellWidth.get().toDouble(), it)
                 }
             }
             mazeWidth.onChange {
-                if(it <= 0) disableProperty().set(true)
+                if (it <= 0) disableProperty().set(true)
                 else disableProperty().set(false)
             }
             mazeHeight.onChange {
-                if(it <= 0) disableProperty().set(true)
+                if (it <= 0) disableProperty().set(true)
+                else disableProperty().set(false)
+            }
+        }
+        space(15.0, 0.0)
+        label("Cell width:")
+        space(15.0, 0.0)
+        textfield {
+            bind(cellWidth)
+            textFormatter = TextFormatter<Int>(intFilter)
+        }
+        space(15.0, 0.0)
+        button("Resize grid cells") {
+            setOnAction {
+                controller.rewriteMaze(cellWidth.get().toDouble())
+            }
+            cellWidth.onChange {
+                if (it <= 0) disableProperty().set(true)
                 else disableProperty().set(false)
             }
         }

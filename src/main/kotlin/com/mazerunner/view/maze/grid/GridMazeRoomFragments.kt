@@ -10,7 +10,7 @@ import javafx.scene.layout.GridPane
 import javafx.scene.layout.RowConstraints
 import tornadofx.*
 
-fun mazeGrid(maze: Maze, op: GridPane.() -> Unit = {}): GridPane {
+fun mazeGrid(maze: Maze, cellWidth: Double, op: GridPane.() -> Unit = {}): GridPane {
     val width = maze.getMazeRooms().fold(0) { acc, gridMazeRoom ->
         if(gridMazeRoom !is GridMazeRoom) throw RuntimeException() // FIXME
         maxOf(acc, gridMazeRoom.x)
@@ -23,11 +23,11 @@ fun mazeGrid(maze: Maze, op: GridPane.() -> Unit = {}): GridPane {
 
     return GridPane().apply {
         for(i in 0 .. width) {
-            columnConstraints.add(ColumnConstraints(50.0))
+            columnConstraints.add(ColumnConstraints(cellWidth))
         }
 
         for(j in 0 .. height) {
-            rowConstraints.add(RowConstraints(50.0))
+            rowConstraints.add(RowConstraints(cellWidth))
         }
 
         for(i in 0..width) {

@@ -29,7 +29,7 @@ class TopBar : Fragment() {
                     if(files.isNotEmpty()) {
                         val file = files[0]
                         maze.loadFromFile(file)
-                        controller.rewriteMaze()
+                        controller.rewriteMaze(GridMazeController.defaultCellWidth) // FIXME maybe there is sense to save cellWidth
                     }
                 }
             }

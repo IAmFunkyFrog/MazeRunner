@@ -9,14 +9,14 @@ import com.mazerunner.view.maze.grid.GridMazeView
 import com.mazerunner.view.maze.grid.mazeGrid
 import javafx.scene.control.ScrollPane
 
-class GridMazeController : MazeController() {
+class GridMazeController : MazeController<Double>() {
 
     private val gridMazeView: GridMazeView by inject()
 
-    fun onMazeGeneratorChange(width: Int, height: Int, gridMazeGeneratorFactory: GridMazeGeneratorFactory) {
+    fun onMazeGeneratorChange(width: Int, height: Int, cellWidth: Double, gridMazeGeneratorFactory: GridMazeGeneratorFactory) {
         maze.mazeGenerator = gridMazeGeneratorFactory.makeMazeGenerator(width, height)
         maze.initializeMazeGeneratorLayout()
-        rewriteMaze()
+        rewriteMaze(cellWidth)
     }
 
     fun onMazeRunnerChange(mazeRunnerFactory: MazeRunnerFactory) {
@@ -28,8 +28,12 @@ class GridMazeController : MazeController() {
         }
     }
 
-    override fun rewriteMaze() {
+    override fun rewriteMaze(cellWidth: Double) {
         if(gridMazeView.root  !is ScrollPane) throw RuntimeException("Should not reach")
-        (gridMazeView.root as ScrollPane).content = mazeGrid(maze)
+        (gridMazeView.root as ScrollPane).content = mazeGrid(maze, cellWidth)
+    }
+
+    companion object {
+        const val defaultCellWidth = 50.0
     }
 }
