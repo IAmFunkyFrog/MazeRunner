@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6cb7e1b3-e263-4726-acf0-8df8c61fa904" name="Changes" comment="[Feature] Added initial README.md">
+    <list default="true" id="6cb7e1b3-e263-4726-acf0-8df8c61fa904" name="Changes" comment="[Feature] Added sizing of cells inside grid maze">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/model/layout/GraphMazeRoom.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/leftbar/grid/GridMazeGeneratorSelectorFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/com/mazerunner/view/controls/leftbar/grid/GridMazeGeneratorSelectorFragment.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,8 +60,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin File" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -70,6 +72,7 @@
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="HARD" />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -98,7 +101,7 @@
     &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propCompiler&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -273,6 +276,10 @@
       <workItem from="1658486792564" duration="615000" />
       <workItem from="1658492292955" duration="8000" />
       <workItem from="1658493414725" duration="10280000" />
+      <workItem from="1658505884119" duration="719000" />
+      <workItem from="1658515317587" duration="1393000" />
+      <workItem from="1658569612976" duration="5553000" />
+      <workItem from="1658999821775" duration="527000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1657895320362</created>
@@ -358,7 +365,42 @@
       <option name="project" value="LOCAL" />
       <updated>1658498255306</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Test commit">
+      <created>1658506146430</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1658506146430</updated>
+    </task>
+    <task id="LOCAL-00014" summary="[Refactor] Change of inheritance structure">
+      <created>1658515632897</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1658515632897</updated>
+    </task>
+    <task id="LOCAL-00015" summary="[Refactor] Remove redundant imports">
+      <created>1658515648690</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1658515648690</updated>
+    </task>
+    <task id="LOCAL-00016" summary="[Feature] Added simple integer filter to integer text fields">
+      <created>1658573435924</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1658573435924</updated>
+    </task>
+    <task id="LOCAL-00017" summary="[Feature] Added sizing of cells inside grid maze">
+      <created>1658574719445</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1658574719445</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,7 +417,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="master" />
+                        <option value="develop" />
                       </list>
                     </value>
                   </entry>
@@ -402,7 +444,12 @@
     <MESSAGE value="[Refactor] Rename" />
     <MESSAGE value="[Feature] Added LeftBar.kt" />
     <MESSAGE value="[Feature] Added &quot;Help&quot; button to topbar" />
-    <option name="LAST_COMMIT_MESSAGE" value="[Feature] Added &quot;Help&quot; button to topbar" />
+    <MESSAGE value="Test commit" />
+    <MESSAGE value="[Refactor] Change of inheritance structure" />
+    <MESSAGE value="[Refactor] Remove redundant imports" />
+    <MESSAGE value="[Feature] Added simple integer filter to integer text fields" />
+    <MESSAGE value="[Feature] Added sizing of cells inside grid maze" />
+    <option name="LAST_COMMIT_MESSAGE" value="[Feature] Added sizing of cells inside grid maze" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

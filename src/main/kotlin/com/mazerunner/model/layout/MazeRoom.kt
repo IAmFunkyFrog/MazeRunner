@@ -2,6 +2,7 @@ package com.mazerunner.model.layout
 
 import javafx.beans.property.SimpleObjectProperty
 import java.io.Externalizable
+import java.io.ObjectOutput
 import kotlin.reflect.KClass
 
 enum class MazeRoomState {

@@ -1,5 +1,6 @@
-package com.mazerunner.model.generator
+package com.mazerunner.model.generator.grid
 
+import com.mazerunner.model.generator.MazeGenerator
 import com.mazerunner.model.layout.GridMazeRoom
 import com.mazerunner.model.layout.MazeLayout
 import com.mazerunner.model.layout.MazeLayoutImpl

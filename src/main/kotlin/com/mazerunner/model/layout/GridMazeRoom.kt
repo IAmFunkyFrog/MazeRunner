@@ -27,7 +27,7 @@ class GridMazeRoom(
     override fun writeExternal(objectOutput: ObjectOutput?) {
         objectOutput?.apply {
             writeInt(this@GridMazeRoom.hashCode())
-            writeInt(MazeRoom.MazeRoomImplementationToId[GridMazeRoom::class]!!)
+            writeInt(MazeRoom.MazeRoomImplementationToId[this@GridMazeRoom::class]!!)
             writeInt(x)
             writeInt(y)
             writeInt(borderProperty.get())

@@ -1,10 +1,11 @@
 package com.mazerunner.view.controls.leftbar.grid
 
 import com.mazerunner.controller.grid.GridMazeController
-import com.mazerunner.model.generator.EulerMazeGeneratorFactory
-import com.mazerunner.model.generator.GridMazeGeneratorFactory
+import com.mazerunner.model.generator.grid.EulerMazeGeneratorFactory
+import com.mazerunner.model.generator.grid.GridMazeGeneratorFactory
 import com.mazerunner.view.controls.ControlsStylesheet
 import com.mazerunner.view.controls.space
+import com.mazerunner.view.maze.grid.GridMazeView
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.FXCollections
@@ -16,6 +17,7 @@ import java.util.function.UnaryOperator
 class GridMazeGeneratorSelectorFragment : Fragment() {
 
     private val controller: GridMazeController by inject()
+    private val gridMazeView: GridMazeView by inject()
 
     private val factories = FXCollections.observableList(
         listOf(

@@ -1,7 +1,7 @@
 package com.mazerunner.controller.grid
 
 import com.mazerunner.controller.MazeController
-import com.mazerunner.model.generator.GridMazeGeneratorFactory
+import com.mazerunner.model.generator.grid.GridMazeGeneratorFactory
 import com.mazerunner.model.layout.MazeLayoutState
 import com.mazerunner.model.layout.MazeRoomState
 import com.mazerunner.model.runner.MazeRunnerFactory

@@ -1,4 +1,4 @@
-package com.mazerunner.model.generator
+package com.mazerunner.model.generator.grid
 
 class EulerMazeGeneratorFactory : GridMazeGeneratorFactory {
 

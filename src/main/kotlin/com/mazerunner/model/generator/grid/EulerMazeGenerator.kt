@@ -1,4 +1,4 @@
-package com.mazerunner.model.generator
+package com.mazerunner.model.generator.grid
 
 import com.mazerunner.model.layout.*
 import java.util.*

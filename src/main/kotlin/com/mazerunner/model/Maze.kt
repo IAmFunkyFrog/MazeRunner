@@ -1,6 +1,6 @@
 package com.mazerunner.model
 
-import com.mazerunner.model.generator.EulerMazeGenerator
+import com.mazerunner.model.generator.grid.EulerMazeGenerator
 import com.mazerunner.model.generator.MazeGenerator
 import com.mazerunner.model.layout.*
 import com.mazerunner.model.runner.MazeRunner
