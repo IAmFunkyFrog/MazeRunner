@@ -1,7 +1,6 @@
 package com.mazerunner.view.controls.leftbar.grid
 
-import com.mazerunner.controller.grid.GridMazeController
-import com.mazerunner.model.generator.MazeGeneratorFactory
+import com.mazerunner.controller.maze.grid.GridMazeController
 import com.mazerunner.model.generator.grid.EulerMazeGeneratorFactory
 import com.mazerunner.model.generator.grid.GridMazeGeneratorFactory
 import com.mazerunner.view.controls.ControlsStylesheet

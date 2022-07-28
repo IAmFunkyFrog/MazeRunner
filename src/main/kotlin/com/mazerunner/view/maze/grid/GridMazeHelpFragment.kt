@@ -1,6 +1,6 @@
 package com.mazerunner.view.maze.grid
 
-import com.mazerunner.controller.grid.GridMazeRoomController
+import com.mazerunner.controller.maze.grid.GridMazeRoomController
 import javafx.event.EventTarget
 import javafx.scene.Parent
 import javafx.scene.control.Label

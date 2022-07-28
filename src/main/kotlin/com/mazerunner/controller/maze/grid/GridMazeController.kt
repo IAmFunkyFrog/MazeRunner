@@ -1,6 +1,6 @@
-package com.mazerunner.controller.grid
+package com.mazerunner.controller.maze.grid
 
-import com.mazerunner.controller.MazeController
+import com.mazerunner.controller.maze.MazeController
 import com.mazerunner.model.generator.grid.GridMazeGeneratorFactory
 import com.mazerunner.model.layout.MazeLayoutState
 import com.mazerunner.model.layout.MazeRoomState

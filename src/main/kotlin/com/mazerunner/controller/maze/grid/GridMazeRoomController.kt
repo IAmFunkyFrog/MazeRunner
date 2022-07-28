@@ -1,4 +1,4 @@
-package com.mazerunner.controller.grid
+package com.mazerunner.controller.maze.grid
 
 import com.mazerunner.controller.InputCommand
 import com.mazerunner.model.Maze

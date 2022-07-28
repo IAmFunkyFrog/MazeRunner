@@ -1,6 +1,6 @@
 package com.mazerunner.view.controls.topbar
 
-import com.mazerunner.controller.grid.GridMazeController
+import com.mazerunner.controller.maze.grid.GridMazeController
 import com.mazerunner.model.Maze
 import com.mazerunner.view.maze.grid.GridMazeHelpFragment
 import javafx.scene.Parent
@@ -14,6 +14,13 @@ class TopBar : Fragment() {
 
     override val root: Parent = menubar {
         menu("File") {
+            menu(name = "New") {
+                item(name = "Grid layout") {
+                    setOnAction {
+                        TODO("Not yet implemented")
+                    }
+                }
+            }
             item(name = "Save", keyCombination = "Ctrl+S") {
                 setOnAction {
                     val files = chooseFile(title = "Choose file to save maze", filters = emptyArray(), mode = FileChooserMode.Save)

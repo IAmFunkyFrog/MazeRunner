@@ -1,7 +1,6 @@
 package com.mazerunner.view.controls.leftbar.grid
 
-import com.mazerunner.controller.grid.GridMazeController
-import com.mazerunner.model.Maze
+import com.mazerunner.controller.maze.grid.GridMazeController
 import com.mazerunner.view.controls.ControlsStylesheet
 import com.mazerunner.view.controls.space
 import javafx.scene.Parent

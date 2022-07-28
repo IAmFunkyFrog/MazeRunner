@@ -1,6 +1,5 @@
 package com.mazerunner.view
 
-import com.mazerunner.controller.grid.GridMazeController
 import com.mazerunner.view.controls.leftbar.grid.*
 import com.mazerunner.view.controls.topbar.TopBar
 import com.mazerunner.view.maze.grid.GridMazeView

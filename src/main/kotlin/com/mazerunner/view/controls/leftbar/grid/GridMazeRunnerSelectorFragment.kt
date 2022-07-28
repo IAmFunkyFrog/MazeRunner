@@ -1,6 +1,6 @@
 package com.mazerunner.view.controls.leftbar.grid
 
-import com.mazerunner.controller.grid.GridMazeController
+import com.mazerunner.controller.maze.grid.GridMazeController
 import com.mazerunner.model.runner.BFSMazeRunnerFactory
 import com.mazerunner.model.runner.MazeRunnerFactory
 import com.mazerunner.model.runner.RandomMazeRunnerFactory

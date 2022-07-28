@@ -1,6 +1,6 @@
 package com.mazerunner.view.maze.grid
 
-import com.mazerunner.controller.grid.GridMazeRoomController
+import com.mazerunner.controller.maze.grid.GridMazeRoomController
 import com.mazerunner.model.layout.GridMazeRoom
 import com.mazerunner.model.layout.MazeRoomState
 import javafx.beans.property.SimpleStringProperty

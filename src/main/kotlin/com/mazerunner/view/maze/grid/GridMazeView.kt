@@ -1,8 +1,7 @@
 package com.mazerunner.view.maze.grid
 
-import com.mazerunner.controller.grid.GridMazeController
+import com.mazerunner.controller.maze.grid.GridMazeController
 import com.mazerunner.model.Maze
-import javafx.scene.Node
 import javafx.scene.Parent
 import tornadofx.*
 

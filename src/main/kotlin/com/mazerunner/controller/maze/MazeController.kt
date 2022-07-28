@@ -1,4 +1,4 @@
-package com.mazerunner.controller
+package com.mazerunner.controller.maze
 
 import com.mazerunner.model.Maze
 import tornadofx.Controller
