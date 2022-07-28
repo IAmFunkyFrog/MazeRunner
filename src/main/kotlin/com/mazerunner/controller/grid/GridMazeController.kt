@@ -14,7 +14,7 @@ class GridMazeController : MazeController<Double>() {
     private val gridMazeView: GridMazeView by inject()
 
     fun onMazeGeneratorChange(width: Int, height: Int, cellWidth: Double, gridMazeGeneratorFactory: GridMazeGeneratorFactory) {
-        maze.mazeGenerator = gridMazeGeneratorFactory.makeMazeGenerator(width, height)
+        maze.mazeGenerator = gridMazeGeneratorFactory.makeMazeGenerator(Pair(width, height))
         maze.initializeMazeGeneratorLayout()
         rewriteMaze(cellWidth)
     }
