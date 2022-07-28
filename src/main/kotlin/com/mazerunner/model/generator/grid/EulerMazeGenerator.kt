@@ -48,9 +48,7 @@ class EulerMazeGenerator(
         return true
     }
 
-    override fun toString(): String {
-        return "Euler"
-    }
+    override fun toString() = "Euler"
 
     private fun indexingPhase(currentRoom: GridMazeRoom, mazeLayout: MazeLayout) {
         val rightRoom = currentRoom.getRightRoom(mazeLayout)
