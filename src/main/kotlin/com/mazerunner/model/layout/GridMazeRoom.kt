@@ -1,11 +1,10 @@
 package com.mazerunner.model.layout
 
+import com.mazerunner.model.Maze
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
-import tornadofx.getProperty
 import java.io.ObjectInput
 import java.io.ObjectOutput
-import kotlin.reflect.full.memberProperties
 
 // GradMazeRoom can have 4 borders
 // There are (each border coded as binary number):
@@ -27,7 +26,7 @@ class GridMazeRoom(
     override fun writeExternal(objectOutput: ObjectOutput?) {
         objectOutput?.apply {
             writeInt(this@GridMazeRoom.hashCode())
-            writeInt(MazeRoom.MazeRoomImplementationToId[this@GridMazeRoom::class]!!)
+            writeInt(Maze.MazeRoomImplementationToId[this@GridMazeRoom::class]!!)
             writeInt(x)
             writeInt(y)
             writeInt(borderProperty.get())

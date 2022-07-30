@@ -1,7 +1,7 @@
 package com.mazerunner.controller.maze.grid
 
 import com.mazerunner.controller.maze.MazeController
-import com.mazerunner.model.Maze
+import com.mazerunner.model.GridMaze
 import com.mazerunner.model.generator.grid.GridMazeGeneratorFactory
 import com.mazerunner.model.layout.MazeLayoutState
 import com.mazerunner.model.layout.MazeRoomState
@@ -9,24 +9,27 @@ import com.mazerunner.model.runner.MazeRunnerFactory
 import com.mazerunner.view.controls.leftbar.grid.GridLeftBar
 import com.mazerunner.view.maze.grid.GridMazeFragment
 import com.mazerunner.view.maze.grid.mazeGrid
+import javafx.beans.property.SimpleDoubleProperty
 import javafx.scene.control.ScrollPane
 import java.io.File
 
 class GridMazeController(
-    override val maze: Maze
+    override val maze: GridMaze
 ) : MazeController<Double>() {
+
+    val cellWidthProperty = SimpleDoubleProperty(50.0) // TODO think about extract properties of maze view in other class
 
     override val mazeLeftBarControls = GridLeftBar(this)
     override val mazeFragment = GridMazeFragment()
 
     init {
-        rewriteMaze(defaultCellWidth)
+        rewriteMaze()
     }
 
-    fun onMazeGeneratorChange(width: Int, height: Int, cellWidth: Double, gridMazeGeneratorFactory: GridMazeGeneratorFactory) {
-        maze.mazeGenerator = gridMazeGeneratorFactory.makeMazeGenerator(Pair(width, height))
+    fun onMazeGeneratorChange(gridMazeGeneratorFactory: GridMazeGeneratorFactory) {
+        maze.mazeGenerator = gridMazeGeneratorFactory.makeMazeGenerator(Pair(maze.widthProperty.get(), maze.heightProperty.get()))
         maze.initializeMazeGeneratorLayout()
-        rewriteMaze(cellWidth)
+        rewriteMaze()
     }
 
     fun onMazeRunnerChange(mazeRunnerFactory: MazeRunnerFactory) {
@@ -38,9 +41,9 @@ class GridMazeController(
         }
     }
 
-    override fun rewriteMaze(additionalInfo: Double) {
+    override fun rewriteMaze() {
         if(mazeFragment.root  !is ScrollPane) throw RuntimeException("Should not reach")
-        mazeFragment.root.content = mazeGrid(maze, additionalInfo)
+        mazeFragment.root.content = mazeGrid(maze, cellWidthProperty.get())
     }
 
     override fun saveMazeInFile(file: File) {
@@ -49,10 +52,6 @@ class GridMazeController(
 
     override fun loadMazeFromFile(file: File) {
         maze.loadFromFile(file)
-        rewriteMaze(defaultCellWidth)
-    }
-
-    companion object {
-        const val defaultCellWidth = 50.0
+        rewriteMaze()
     }
 }

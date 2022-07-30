@@ -1,10 +1,11 @@
 package com.mazerunner.model.layout
 
+import com.mazerunner.model.Maze
 import java.io.ObjectInput
 
 fun deserializeMazeRoom(objectInput: ObjectInput): MazeRoom {
     val id = objectInput.readInt()
-    return when(MazeRoom.idToMazeRoomImplementation[id]) {
+    return when(Maze.idToMazeRoomImplementation[id]) {
         GridMazeRoom::class -> {
             val room = GridMazeRoom(0, 0)
             room.readExternal(objectInput)

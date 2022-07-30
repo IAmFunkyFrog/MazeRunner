@@ -7,8 +7,9 @@ import com.mazerunner.model.runner.MazeRunner
 import com.mazerunner.model.runner.RandomMazeRunner
 import javafx.beans.property.SimpleObjectProperty
 import java.io.*
+import kotlin.reflect.KClass
 
-class Maze private constructor(
+abstract class Maze protected constructor(
     private var mazeLayout: MazeLayout,
     var mazeRunner: MazeRunner,
     var mazeGenerator: MazeGenerator
@@ -69,9 +70,20 @@ class Maze private constructor(
     }
 
     companion object {
-        fun makeGridMazePattern(): Maze {
+
+        val idToMazeRoomImplementation = HashMap<Int, KClass<*>>().apply {
+            this[0] = GridMazeRoom::class
+        }
+
+        val MazeRoomImplementationToId = HashMap<KClass<*>, Int>().apply {
+            for((key, value) in idToMazeRoomImplementation) {
+                this[value] = key
+            }
+        }
+
+        fun makeGridMazePattern(): GridMaze {
             val eulerMazeGenerator = EulerMazeGenerator(5, 5) // FIXME hardcode bad decision
-            return Maze(
+            return GridMaze(
                 eulerMazeGenerator.initializeLayout(), RandomMazeRunner(), eulerMazeGenerator
             )
         }

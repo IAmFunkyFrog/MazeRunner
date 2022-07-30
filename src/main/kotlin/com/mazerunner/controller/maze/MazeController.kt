@@ -20,7 +20,7 @@ abstract class MazeController<T> : Controller() {
     fun setMazeLayoutGenerated() {
         maze.setMazeLayoutGenerated()
     }
-    abstract fun rewriteMaze(additionalInfo: T)
+    abstract fun rewriteMaze()
     abstract fun saveMazeInFile(file: File)
     abstract fun loadMazeFromFile(file: File)
 

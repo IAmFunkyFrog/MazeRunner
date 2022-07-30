@@ -5,7 +5,6 @@ import com.mazerunner.model.generator.grid.EulerMazeGeneratorFactory
 import com.mazerunner.model.generator.grid.GridMazeGeneratorFactory
 import com.mazerunner.view.controls.ControlsStylesheet
 import com.mazerunner.view.controls.space
-import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.FXCollections
 import javafx.scene.Parent
@@ -25,11 +24,6 @@ class GridMazeGeneratorSelectorFragment(
     private val selectedGenerator = SimpleObjectProperty<GridMazeGeneratorFactory>(
         factories.first()
     )
-
-    private val mazeWidth = SimpleIntegerProperty(5) // FIXME hardcode is bad decision
-    private val mazeHeight = SimpleIntegerProperty(5)
-
-    private val cellWidth = SimpleIntegerProperty(GridMazeController.defaultCellWidth.toInt())
 
     private val intFilter = UnaryOperator<TextFormatter.Change> {
         when {
@@ -52,18 +46,18 @@ class GridMazeGeneratorSelectorFragment(
             selectionModel.selectFirst()
             setOnAction {
                 selectedGenerator.get()?.let {
-                    controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), cellWidth.get().toDouble(), it)
+                    controller.onMazeGeneratorChange(it)
                 }
             }
         }
         space(15.0, 0.0)
         hbox {
             textfield {
-                bind(mazeWidth)
+                bind(controller.maze.widthProperty)
                 textFormatter = TextFormatter<Int>(intFilter)
             }
             textfield {
-                bind(mazeHeight)
+                bind(controller.maze.heightProperty)
                 textFormatter = TextFormatter<Int>(intFilter)
             }
         }
@@ -71,14 +65,14 @@ class GridMazeGeneratorSelectorFragment(
         button("Reset grid") {
             setOnAction {
                 selectedGenerator.get()?.let {
-                    controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), cellWidth.get().toDouble(), it)
+                    controller.onMazeGeneratorChange(it)
                 }
             }
-            mazeWidth.onChange {
+            controller.maze.widthProperty.onChange {
                 if (it <= 0) disableProperty().set(true)
                 else disableProperty().set(false)
             }
-            mazeHeight.onChange {
+            controller.maze.heightProperty.onChange {
                 if (it <= 0) disableProperty().set(true)
                 else disableProperty().set(false)
             }
@@ -87,15 +81,15 @@ class GridMazeGeneratorSelectorFragment(
         label("Cell width:")
         space(15.0, 0.0)
         textfield {
-            bind(cellWidth)
+            bind(controller.cellWidthProperty)
             textFormatter = TextFormatter<Int>(intFilter)
         }
         space(15.0, 0.0)
         button("Resize grid cells") {
             setOnAction {
-                controller.rewriteMaze(cellWidth.get().toDouble())
+                controller.rewriteMaze()
             }
-            cellWidth.onChange {
+            controller.cellWidthProperty.onChange {
                 if (it <= 0) disableProperty().set(true)
                 else disableProperty().set(false)
             }
