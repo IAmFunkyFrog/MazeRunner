@@ -2,6 +2,8 @@ package com.mazerunner.controller.maze.grid
 
 import com.mazerunner.controller.maze.MazeController
 import com.mazerunner.model.GridMaze
+import com.mazerunner.model.generator.MazeGenerator
+import com.mazerunner.model.generator.grid.GridMazeGenerator
 import com.mazerunner.model.generator.grid.GridMazeGeneratorFactory
 import com.mazerunner.model.layout.MazeLayoutState
 import com.mazerunner.model.layout.MazeRoomState
@@ -10,6 +12,7 @@ import com.mazerunner.view.controls.leftbar.grid.GridLeftBar
 import com.mazerunner.view.maze.grid.GridMazeFragment
 import com.mazerunner.view.maze.grid.mazeGrid
 import javafx.beans.property.SimpleDoubleProperty
+import javafx.beans.property.SimpleIntegerProperty
 import javafx.scene.control.ScrollPane
 import java.io.File
 
@@ -18,6 +21,8 @@ class GridMazeController(
 ) : MazeController<Double>() {
 
     val cellWidthProperty = SimpleDoubleProperty(50.0) // TODO think about extract properties of maze view in other class
+    val widthProperty = SimpleIntegerProperty((maze.mazeGenerator as GridMazeGenerator).width)
+    val heightProperty = SimpleIntegerProperty((maze.mazeGenerator as GridMazeGenerator).height)
 
     override val mazeLeftBarControls = GridLeftBar(this)
     override val mazeFragment = GridMazeFragment()
@@ -27,7 +32,7 @@ class GridMazeController(
     }
 
     fun onMazeGeneratorChange(gridMazeGeneratorFactory: GridMazeGeneratorFactory) {
-        maze.mazeGenerator = gridMazeGeneratorFactory.makeMazeGenerator(Pair(maze.widthProperty.get(), maze.heightProperty.get()))
+        maze.mazeGenerator = gridMazeGeneratorFactory.makeMazeGenerator(Pair(widthProperty.get(), heightProperty.get()))
         maze.initializeMazeGeneratorLayout()
         rewriteMaze()
     }

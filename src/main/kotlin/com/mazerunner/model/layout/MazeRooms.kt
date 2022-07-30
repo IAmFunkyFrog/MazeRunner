@@ -1,6 +1,7 @@
 package com.mazerunner.model.layout
 
 import com.mazerunner.model.Maze
+import com.mazerunner.model.layout.grid.GridMazeRoom
 import java.io.ObjectInput
 
 fun deserializeMazeRoom(objectInput: ObjectInput): MazeRoom {

@@ -1,7 +1,7 @@
 package com.mazerunner.view.maze.grid
 
 import com.mazerunner.model.Maze
-import com.mazerunner.model.layout.GridMazeRoom
+import com.mazerunner.model.layout.grid.GridMazeRoom
 import javafx.geometry.Pos
 import javafx.scene.layout.ColumnConstraints
 import javafx.scene.layout.GridPane

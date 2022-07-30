@@ -53,11 +53,11 @@ class GridMazeGeneratorSelectorFragment(
         space(15.0, 0.0)
         hbox {
             textfield {
-                bind(controller.maze.widthProperty)
+                bind(controller.widthProperty)
                 textFormatter = TextFormatter<Int>(intFilter)
             }
             textfield {
-                bind(controller.maze.heightProperty)
+                bind(controller.heightProperty)
                 textFormatter = TextFormatter<Int>(intFilter)
             }
         }
@@ -68,11 +68,11 @@ class GridMazeGeneratorSelectorFragment(
                     controller.onMazeGeneratorChange(it)
                 }
             }
-            controller.maze.widthProperty.onChange {
+            controller.widthProperty.onChange {
                 if (it <= 0) disableProperty().set(true)
                 else disableProperty().set(false)
             }
-            controller.maze.heightProperty.onChange {
+            controller.heightProperty.onChange {
                 if (it <= 0) disableProperty().set(true)
                 else disableProperty().set(false)
             }

@@ -3,6 +3,7 @@ package com.mazerunner.model
 import com.mazerunner.model.generator.grid.EulerMazeGenerator
 import com.mazerunner.model.generator.MazeGenerator
 import com.mazerunner.model.layout.*
+import com.mazerunner.model.layout.grid.GridMazeRoom
 import com.mazerunner.model.runner.MazeRunner
 import com.mazerunner.model.runner.RandomMazeRunner
 import javafx.beans.property.SimpleObjectProperty

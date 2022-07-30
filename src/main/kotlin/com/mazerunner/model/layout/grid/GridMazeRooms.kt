@@ -1,6 +1,7 @@
 package com.mazerunner.model.layout
 
 import com.mazerunner.model.Maze
+import com.mazerunner.model.layout.grid.GridMazeRoom
 
 fun GridMazeRoom.distanceTo(gridMazeRoom: GridMazeRoom): Int {
     return (this.x - gridMazeRoom.x) * (this.x - gridMazeRoom.x) + (this.y - gridMazeRoom.y) * (this.y - gridMazeRoom.y)

@@ -1,6 +1,9 @@
-package com.mazerunner.model.layout
+package com.mazerunner.model.layout.grid
 
 import com.mazerunner.model.Maze
+import com.mazerunner.model.layout.MazeRoom
+import com.mazerunner.model.layout.MazeRoomState
+import com.mazerunner.model.layout.MazeRoomStateWithInfo
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import java.io.ObjectInput
@@ -20,7 +23,9 @@ class GridMazeRoom(
     val y: Int,
 ) : MazeRoom {
 
-    override val stateProperty: SimpleObjectProperty<MazeRoomStateWithInfo<*>> = SimpleObjectProperty(MazeRoomStateWithInfo<Any>(null, MazeRoomState.UNKNOWN)) // TODO serialize this property
+    override val stateProperty: SimpleObjectProperty<MazeRoomStateWithInfo<*>> = SimpleObjectProperty(
+        MazeRoomStateWithInfo<Any>(null, MazeRoomState.UNKNOWN)
+    ) // TODO serialize this property
 
     val borderProperty = SimpleIntegerProperty(15)
     override fun writeExternal(objectOutput: ObjectOutput?) {

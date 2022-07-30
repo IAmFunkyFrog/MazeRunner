@@ -1,6 +1,7 @@
 package com.mazerunner.model.generator.grid
 
 import com.mazerunner.model.layout.*
+import com.mazerunner.model.layout.grid.GridMazeRoom
 import java.util.*
 import kotlin.random.Random
 
