@@ -61,7 +61,7 @@ class TopBar : Fragment() {
         menu("Help") {
             item(name = "Show controls", "Ctrl+H") {
                 setOnAction {
-                    find<GridMazeHelpFragment>().openModal(stageStyle = StageStyle.UTILITY)
+                    mazeControllerProperty.get()?.helpFragment?.openModal(stageStyle = StageStyle.UTILITY)
                 }
             }
         }

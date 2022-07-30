@@ -10,10 +10,12 @@ import com.mazerunner.model.layout.MazeRoomState
 import com.mazerunner.model.runner.MazeRunnerFactory
 import com.mazerunner.view.controls.leftbar.grid.GridLeftBar
 import com.mazerunner.view.maze.grid.GridMazeFragment
+import com.mazerunner.view.maze.grid.GridMazeHelpFragment
 import com.mazerunner.view.maze.grid.mazeGrid
 import javafx.beans.property.SimpleDoubleProperty
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.scene.control.ScrollPane
+import tornadofx.Fragment
 import java.io.File
 
 class GridMazeController(
@@ -26,6 +28,7 @@ class GridMazeController(
 
     override val mazeLeftBarControls = GridLeftBar(this)
     override val mazeFragment = GridMazeFragment()
+    override val helpFragment: Fragment = GridMazeHelpFragment()
 
     init {
         rewriteMaze()

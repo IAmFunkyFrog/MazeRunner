@@ -13,6 +13,7 @@ abstract class MazeController<T> : Controller() {
     abstract val maze: Maze
     abstract val mazeLeftBarControls: Fragment
     abstract val mazeFragment: Fragment
+    abstract val helpFragment: Fragment
 
     fun makeMazeRunnerTurn() = maze.makeMazeRunnerTurn()
 
