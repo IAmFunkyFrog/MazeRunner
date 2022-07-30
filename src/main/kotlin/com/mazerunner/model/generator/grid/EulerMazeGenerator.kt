@@ -19,9 +19,9 @@ class EulerMazeGenerator(
     override fun initializeLayout(): MazeLayout {
         val mazeLayout = super.initializeLayout()
 
-        val firstRoom = mazeLayout.getRooms().firstOrNull {
+        val firstRoom = mazeLayout.getRooms().first {
             it is GridMazeRoom && it.x == 0 && it.y == 0
-        } ?: throw RuntimeException("Should not happening")
+        }
 
         firstRoom.stateProperty.set(
             MazeRoomStateWithInfo(AdditionalInfo(getNextIndex(), EulerAlgorithmState.INDEXING), MazeRoomState.CURRENT)
