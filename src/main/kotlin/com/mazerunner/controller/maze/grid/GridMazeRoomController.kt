@@ -8,17 +8,18 @@ import com.mazerunner.view.maze.grid.GridMazeRoomFragment
 import com.mazerunner.view.maze.grid.GridMazeStylesheet
 import javafx.scene.input.InputEvent
 import javafx.scene.input.MouseEvent
-import tornadofx.*
+import tornadofx.Controller
+import tornadofx.addClass
+import tornadofx.removeClass
 
 @Suppress("DuplicatedCode")
 class GridMazeRoomController : Controller() {
 
-    private val maze = Maze.getInstance()
     private var lastClickedMazeRoom: GridMazeRoomFragment? = null
 
-    val commandList: List<InputCommand<GridMazeRoomFragment>> = listOf(
-        object: InputCommand<GridMazeRoomFragment> {
-            override val callback: (GridMazeRoomFragment, InputEvent) -> Unit = { fragment, _ ->
+    val commandList: List<InputCommand<Pair<Maze, GridMazeRoomFragment>>> = listOf(
+        object: InputCommand<Pair<Maze, GridMazeRoomFragment>> {
+            override val callback: (Pair<Maze, GridMazeRoomFragment>, InputEvent) -> Unit = { (maze, fragment), _ ->
                 lastClickedMazeRoom?.gridMazeRoom?.toggleBorderTo(fragment.gridMazeRoom, maze)
             }
 
@@ -30,8 +31,8 @@ class GridMazeRoomController : Controller() {
             override fun toString() = "Left mouse click + Ctrl"
 
         },
-        object: InputCommand<GridMazeRoomFragment> {
-            override val callback: (GridMazeRoomFragment, InputEvent) -> Unit = { fragment, _ ->
+        object: InputCommand<Pair<Maze, GridMazeRoomFragment>> {
+            override val callback: (Pair<Maze, GridMazeRoomFragment>, InputEvent) -> Unit = { (maze, fragment), _ ->
                 maze.setMazeRunnerOnRoom(fragment.gridMazeRoom)
             }
 
@@ -43,8 +44,8 @@ class GridMazeRoomController : Controller() {
             override fun toString() = "Left mouse click + Shift"
 
         },
-        object: InputCommand<GridMazeRoomFragment> {
-            override val callback: (GridMazeRoomFragment, InputEvent) -> Unit = { fragment, _ ->
+        object: InputCommand<Pair<Maze, GridMazeRoomFragment>> {
+            override val callback: (Pair<Maze, GridMazeRoomFragment>, InputEvent) -> Unit = { (_, fragment), _ ->
                 lastClickedMazeRoom?.root?.removeClass(GridMazeStylesheet.selectedGridMazeRoom)
                 lastClickedMazeRoom = fragment
                 fragment.root.addClass(GridMazeStylesheet.selectedGridMazeRoom)
@@ -60,12 +61,12 @@ class GridMazeRoomController : Controller() {
         }
     )
 
-    fun onGridMazeRoomMouseClicked(gridMazeRoomFragment: GridMazeRoomFragment, event: MouseEvent) {
+    fun onGridMazeRoomMouseClicked(maze: Maze, gridMazeRoomFragment: GridMazeRoomFragment, event: MouseEvent) {
         if(maze.mazeLayoutStateProperty.get() != MazeLayoutState.GENERATED) return
 
         for(command in commandList) {
             if(command.check(event)) {
-                command.callback(gridMazeRoomFragment, event)
+                command.callback(Pair(maze, gridMazeRoomFragment), event)
                 break
             }
         }

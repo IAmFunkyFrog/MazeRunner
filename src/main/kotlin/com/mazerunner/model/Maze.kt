@@ -13,7 +13,9 @@ class Maze private constructor(
     var mazeRunner: MazeRunner,
     var mazeGenerator: MazeGenerator
 ) {
-    val mazeLayoutStateProperty: SimpleObjectProperty<MazeLayoutState> = SimpleObjectProperty(MazeLayoutState.INITIALIZED)
+    val mazeLayoutStateProperty: SimpleObjectProperty<MazeLayoutState> = SimpleObjectProperty(mazeLayout.stateProperty.get()).apply {
+        bind(mazeLayout.stateProperty)
+    }
 
     fun getMazeRooms() = mazeLayout.getRooms()
 
@@ -67,17 +69,11 @@ class Maze private constructor(
     }
 
     companion object {
-
-        private lateinit var instance: Maze
-
-        fun getInstance(): Maze {
-            synchronized(Maze::class) {
-                val eulerMazeGenerator = EulerMazeGenerator(5, 5)
-                if (!this::instance.isInitialized) instance = Maze(
-                    eulerMazeGenerator.initializeLayout(), RandomMazeRunner(), eulerMazeGenerator
-                )
-            }
-            return instance
+        fun makeGridMazePattern(): Maze {
+            val eulerMazeGenerator = EulerMazeGenerator(5, 5) // FIXME hardcode bad decision
+            return Maze(
+                eulerMazeGenerator.initializeLayout(), RandomMazeRunner(), eulerMazeGenerator
+            )
         }
     }
 }

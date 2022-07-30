@@ -1,17 +1,22 @@
 package com.mazerunner.view
 
-import com.mazerunner.view.controls.leftbar.grid.*
-import com.mazerunner.view.controls.topbar.TopBar
-import com.mazerunner.view.maze.grid.GridMazeView
-import tornadofx.*
+import com.mazerunner.controller.maze.grid.GridMazeController
+import com.mazerunner.model.Maze
+import com.mazerunner.view.controls.TopBar
+import tornadofx.View
+import tornadofx.borderpane
 
 class MainView : View() {
 
-    private val gridMazeView: GridMazeView by inject()
+    private val mazeTabPaneView: MazeTabPaneView by inject()
 
     override val root = borderpane {
         top = TopBar().root
-        center = gridMazeView.root
-        left = LeftBar().root
+        center = mazeTabPaneView.root
+    }
+
+    init {
+        mazeTabPaneView.root.tabs.add(MazeTab(GridMazeController(Maze.makeGridMazePattern()))) // FIXME TEST CODE
+        mazeTabPaneView.root.selectionModel.selectFirst()
     }
 }

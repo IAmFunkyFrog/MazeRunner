@@ -9,9 +9,9 @@ import tornadofx.addClass
 import tornadofx.button
 import tornadofx.vbox
 
-class GridMazeGeneratorControlsFragment : Fragment() {
-
-    private val controller: GridMazeController by inject()
+class GridMazeGeneratorControlsFragment(
+    private val controller: GridMazeController
+) : Fragment() {
 
     override val root: Parent = vbox {
         addClass(ControlsStylesheet.comboboxWithLabel)

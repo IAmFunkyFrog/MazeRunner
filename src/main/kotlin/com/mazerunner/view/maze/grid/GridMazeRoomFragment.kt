@@ -1,6 +1,7 @@
 package com.mazerunner.view.maze.grid
 
 import com.mazerunner.controller.maze.grid.GridMazeRoomController
+import com.mazerunner.model.Maze
 import com.mazerunner.model.layout.GridMazeRoom
 import com.mazerunner.model.layout.MazeRoomState
 import javafx.beans.property.SimpleStringProperty
@@ -8,6 +9,7 @@ import javafx.scene.Parent
 import tornadofx.*
 
 class GridMazeRoomFragment(
+    val maze: Maze,
     val gridMazeRoom: GridMazeRoom
 ): Fragment() {
 
@@ -50,7 +52,7 @@ class GridMazeRoomFragment(
         }
 
         root.setOnMousePressed {
-            controller.onGridMazeRoomMouseClicked(this, it)
+            controller.onGridMazeRoomMouseClicked(maze, this, it)
         }
     }
 }

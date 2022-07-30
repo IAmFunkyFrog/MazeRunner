@@ -11,9 +11,9 @@ import javafx.collections.FXCollections
 import javafx.scene.Parent
 import tornadofx.*
 
-class GridMazeRunnerSelectorFragment : Fragment() {
-
-    private val controller: GridMazeController by inject()
+class GridMazeRunnerSelectorFragment(
+    private val controller: GridMazeController
+) : Fragment() {
 
     private val factories = FXCollections.observableList(
         listOf(

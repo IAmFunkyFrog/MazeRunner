@@ -5,7 +5,6 @@ import com.mazerunner.model.generator.grid.EulerMazeGeneratorFactory
 import com.mazerunner.model.generator.grid.GridMazeGeneratorFactory
 import com.mazerunner.view.controls.ControlsStylesheet
 import com.mazerunner.view.controls.space
-import com.mazerunner.view.maze.grid.GridMazeView
 import javafx.beans.property.SimpleIntegerProperty
 import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.FXCollections
@@ -14,10 +13,9 @@ import javafx.scene.control.TextFormatter
 import tornadofx.*
 import java.util.function.UnaryOperator
 
-class GridMazeGeneratorSelectorFragment : Fragment() {
-
-    private val controller: GridMazeController by inject()
-    private val gridMazeView: GridMazeView by inject()
+class GridMazeGeneratorSelectorFragment(
+    private val controller: GridMazeController
+) : Fragment() {
 
     private val factories = FXCollections.observableList(
         listOf(
@@ -32,16 +30,6 @@ class GridMazeGeneratorSelectorFragment : Fragment() {
     private val mazeHeight = SimpleIntegerProperty(5)
 
     private val cellWidth = SimpleIntegerProperty(GridMazeController.defaultCellWidth.toInt())
-
-    init {
-        controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), cellWidth.get().toDouble(), factories.first())
-    }
-
-    init {
-        selectedGenerator.get()?.let {
-            controller.onMazeGeneratorChange(mazeWidth.get(), mazeHeight.get(), cellWidth.get().toDouble(), it)
-        }
-    }
 
     private val intFilter = UnaryOperator<TextFormatter.Change> {
         when {
