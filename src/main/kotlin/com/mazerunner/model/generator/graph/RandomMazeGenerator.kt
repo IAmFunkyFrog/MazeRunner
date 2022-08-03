@@ -4,8 +4,10 @@ import com.mazerunner.model.layout.*
 
 class RandomMazeGenerator(
     roomsCount: Int,
-    val randomFactor: Double = 0.5
+    val randomFactor: Double = 0.5 // TODO make this parameter modifiable by user
 ) : GraphMazeGenerator(roomsCount) {
+
+    val seenPairs = mutableListOf<Pair<MazeRoom, MazeRoom>>()
 
     override fun initializeLayout(): MazeLayout {
         val mazeLayout = super.initializeLayout()
@@ -27,32 +29,65 @@ class RandomMazeGenerator(
         return mazeLayout
     }
 
+    // FIXME REFACTOR ME
     override fun makeGeneratorIteration(mazeLayout: MazeLayout): Boolean {
+
+        if (mazeLayout.stateProperty.get() == MazeLayoutState.GENERATED) return false
 
         val currentRoom = mazeLayout.getRooms().firstOrNull {
             it.stateProperty.get().mazeRoomState == MazeRoomState.CURRENT
-        } ?: return false
+        }
 
         val lastSeen = mazeLayout.getRooms().firstOrNull {
             it.stateProperty.get().mazeRoomState == MazeRoomState.SEEN
-        } ?: return false
-
-        if(Math.random() < randomFactor) mazeLayout.addDoors(MazeDoorImpl(currentRoom, lastSeen))
-
-        val currentRoomSeenNeighbours = currentRoom.stateProperty.get().info as MutableList<MazeRoom>
-        currentRoomSeenNeighbours.add(lastSeen)
-        lastSeen.stateProperty.set(MazeRoomStateWithInfo(null, MazeRoomState.UNKNOWN))
-
-        val nextRoom = mazeLayout.getRooms().firstOrNull {
-            !currentRoomSeenNeighbours.contains(it)
         }
 
-        if(nextRoom == null) {
+        if (currentRoom == null || lastSeen == null) {
+            mazeLayout.stateProperty.set(MazeLayoutState.GENERATED)
+            return false
+        }
+
+        if (Math.random() < randomFactor) mazeLayout.addDoors(MazeDoorImpl(currentRoom, lastSeen))
+
+        seenPairs.add(Pair(currentRoom, lastSeen))
+        lastSeen.stateProperty.set(MazeRoomStateWithInfo(null, MazeRoomState.UNKNOWN))
+
+        val nextRoom = mazeLayout.getRooms().firstOrNull { nextApplicant ->
+            seenPairs.find {
+                it.first == nextApplicant && it.second == currentRoom ||
+                        it.second == nextApplicant && it.first == currentRoom
+            } == null && nextApplicant != currentRoom
+        }
+
+        if (nextRoom == null) {
             currentRoom.stateProperty.set(MazeRoomStateWithInfo(currentRoom.stateProperty.get(), MazeRoomState.UNKNOWN))
             val nextCurrentRoom = mazeLayout.getRooms().firstOrNull {
                 it.stateProperty.get().info == null
             }
-            nextCurrentRoom?.stateProperty?.set(MazeRoomStateWithInfo(mutableListOf<MazeRoom>(), MazeRoomState.CURRENT))
+            if (nextCurrentRoom == null) mazeLayout.stateProperty.set(MazeLayoutState.GENERATED)
+            else {
+                val nextLastSeenRoom = mazeLayout.getRooms().firstOrNull { nextApplicant ->
+                    seenPairs.find {
+                        it.first == nextApplicant && it.second == nextCurrentRoom ||
+                                it.second == nextApplicant && it.first == nextCurrentRoom
+                    } == null && nextApplicant != nextCurrentRoom
+                }
+                if(nextLastSeenRoom == null) mazeLayout.stateProperty.set(MazeLayoutState.GENERATED)
+                else {
+                    nextCurrentRoom.stateProperty.set(
+                        MazeRoomStateWithInfo(
+                            true,
+                            MazeRoomState.CURRENT
+                        )
+                    )
+                    nextLastSeenRoom.stateProperty.set(
+                        MazeRoomStateWithInfo(
+                            null,
+                            MazeRoomState.SEEN
+                        )
+                    )
+                }
+            }
         } else {
             nextRoom.stateProperty.set(MazeRoomStateWithInfo(null, MazeRoomState.SEEN))
         }

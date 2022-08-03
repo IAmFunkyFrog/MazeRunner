@@ -20,8 +20,9 @@ class GridMazeStylesheet : Stylesheet() {
             Color.RED,
             Color.GRAY
         )
+
         val gridMazeRoomBackgrounds = (0..3).map {
-            CssRule(".", "mazeRoomState$it")
+            CssRule(".", "gridMazeRoomState$it")
         }
 
         val selectedGridMazeRoom by cssclass()

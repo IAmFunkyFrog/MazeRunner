@@ -1,13 +1,14 @@
-package com.mazerunner.view.maze.grid
+package com.mazerunner.controller.maze.grid
 
 import com.mazerunner.model.Maze
 import com.mazerunner.model.layout.grid.GridMazeRoom
+import com.mazerunner.view.maze.grid.GridMazeRoomFragment
 import javafx.geometry.Pos
 import javafx.scene.layout.ColumnConstraints
 import javafx.scene.layout.GridPane
 import javafx.scene.layout.RowConstraints
 
-fun mazeGrid(maze: Maze, cellWidth: Double, op: GridPane.() -> Unit = {}): GridPane {
+fun mazeGrid(maze: Maze, cellWidth: Double): GridPane {
     val width = maze.getMazeRooms().fold(0) { acc, gridMazeRoom ->
         if(gridMazeRoom !is GridMazeRoom) throw RuntimeException("Should not reach") // FIXME
         maxOf(acc, gridMazeRoom.x)

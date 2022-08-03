@@ -1,14 +1,14 @@
 package com.mazerunner.model
 
-import com.mazerunner.model.generator.grid.EulerMazeGenerator
 import com.mazerunner.model.generator.MazeGenerator
+import com.mazerunner.model.generator.graph.RandomMazeGenerator
+import com.mazerunner.model.generator.grid.EulerMazeGenerator
 import com.mazerunner.model.layout.*
-import com.mazerunner.model.layout.grid.GridMazeRoom
 import com.mazerunner.model.runner.MazeRunner
 import com.mazerunner.model.runner.RandomMazeRunner
 import javafx.beans.property.SimpleObjectProperty
-import java.io.*
-import kotlin.reflect.KClass
+import java.io.ObjectInput
+import java.io.ObjectOutput
 
 abstract class Maze protected constructor(
     private var mazeLayout: MazeLayout,
@@ -39,10 +39,9 @@ abstract class Maze protected constructor(
 
     fun makeMazeRunnerTurn() = mazeRunner.makeTurn(mazeLayout)
 
-    fun initializeMazeGeneratorLayout(onInitialize: (Maze) -> Unit = {}) {
+    fun initializeMazeGeneratorLayout() {
         mazeLayout = mazeGenerator.initializeLayout()
         mazeLayoutStateProperty.bind(mazeLayout.stateProperty)
-        onInitialize(this)
     }
 
     fun setMazeLayoutGenerated() {
@@ -60,32 +59,27 @@ abstract class Maze protected constructor(
         return returnValue
     }
 
-    fun saveInFile(file: File) {
-        val stream = FileOutputStream(file)
-        mazeLayout.writeExternal(ObjectOutputStream(stream))
+    fun saveInObjectOutput(objectOutput: ObjectOutput) {
+        mazeLayout.writeExternal(objectOutput)
     }
 
-    fun loadFromFile(file: File) {
-        val stream = FileInputStream(file)
-        mazeLayout.readExternal(ObjectInputStream(stream))
+    fun loadFromObjectOutput(objectInput: ObjectInput) {
+        mazeLayout.readExternal(objectInput)
     }
 
     companion object {
-
-        val idToMazeRoomImplementation = HashMap<Int, KClass<*>>().apply {
-            this[0] = GridMazeRoom::class
-        }
-
-        val MazeRoomImplementationToId = HashMap<KClass<*>, Int>().apply {
-            for((key, value) in idToMazeRoomImplementation) {
-                this[value] = key
-            }
-        }
 
         fun makeGridMazePattern(): GridMaze {
             val eulerMazeGenerator = EulerMazeGenerator(5, 5) // FIXME hardcode bad decision
             return GridMaze(
                 eulerMazeGenerator.initializeLayout(), RandomMazeRunner(), eulerMazeGenerator
+            )
+        }
+
+        fun makeGraphMazePattern(): GraphMaze {
+            val randomMazeGenerator = RandomMazeGenerator(5) // FIXME hardcode bad decision
+            return GraphMaze(
+                randomMazeGenerator.initializeLayout(), RandomMazeRunner(), randomMazeGenerator
             )
         }
     }

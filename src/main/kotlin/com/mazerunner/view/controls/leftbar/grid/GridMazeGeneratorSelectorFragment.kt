@@ -4,13 +4,12 @@ import com.mazerunner.controller.maze.grid.GridMazeController
 import com.mazerunner.model.generator.grid.EulerMazeGeneratorFactory
 import com.mazerunner.model.generator.grid.GridMazeGeneratorFactory
 import com.mazerunner.view.controls.ControlsStylesheet
+import com.mazerunner.view.controls.leftbar.numberTextfield
 import com.mazerunner.view.controls.space
 import javafx.beans.property.SimpleObjectProperty
 import javafx.collections.FXCollections
 import javafx.scene.Parent
-import javafx.scene.control.TextFormatter
 import tornadofx.*
-import java.util.function.UnaryOperator
 
 class GridMazeGeneratorSelectorFragment(
     private val controller: GridMazeController
@@ -24,19 +23,6 @@ class GridMazeGeneratorSelectorFragment(
     private val selectedGenerator = SimpleObjectProperty<GridMazeGeneratorFactory>(
         factories.first()
     )
-
-    private val intFilter = UnaryOperator<TextFormatter.Change> {
-        when {
-            it.isReplaced -> {
-                if (!it.text.matches(Regex("^\\d+"))) it.text = it.controlText
-            }
-            it.isAdded -> {
-                if (!it.text.matches(Regex("^\\d+"))) it.text = ""
-            }
-        }
-
-        it
-    }
 
     override val root: Parent = vbox {
         addClass(ControlsStylesheet.comboboxWithLabel)
@@ -52,13 +38,11 @@ class GridMazeGeneratorSelectorFragment(
         }
         space(15.0, 0.0)
         hbox {
-            textfield {
+            numberTextfield {
                 bind(controller.widthProperty)
-                textFormatter = TextFormatter<Int>(intFilter)
             }
-            textfield {
+            numberTextfield {
                 bind(controller.heightProperty)
-                textFormatter = TextFormatter<Int>(intFilter)
             }
         }
         space(15.0, 0.0)
@@ -80,9 +64,8 @@ class GridMazeGeneratorSelectorFragment(
         space(15.0, 0.0)
         label("Cell width:")
         space(15.0, 0.0)
-        textfield {
+        numberTextfield {
             bind(controller.cellWidthProperty)
-            textFormatter = TextFormatter<Int>(intFilter)
         }
         space(15.0, 0.0)
         button("Resize grid cells") {

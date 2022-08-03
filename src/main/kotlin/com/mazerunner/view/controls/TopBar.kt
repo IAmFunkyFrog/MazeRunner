@@ -1,11 +1,11 @@
 package com.mazerunner.view.controls
 
 import com.mazerunner.controller.maze.MazeController
+import com.mazerunner.controller.maze.graph.GraphMazeController
 import com.mazerunner.controller.maze.grid.GridMazeController
 import com.mazerunner.model.Maze
 import com.mazerunner.view.MazeTab
 import com.mazerunner.view.MazeTabPaneView
-import com.mazerunner.view.maze.grid.GridMazeHelpFragment
 import javafx.beans.property.SimpleObjectProperty
 import javafx.scene.Parent
 import javafx.stage.StageStyle
@@ -29,7 +29,20 @@ class TopBar : Fragment() {
             menu(name = "New") {
                 item(name = "Grid layout") {
                     setOnAction {
-                        mazeTabPaneView.root.tabs.add(MazeTab(GridMazeController(Maze.makeGridMazePattern())))
+                        mazeTabPaneView.root.tabs.add(
+                            MazeTab(
+                                GridMazeController(Maze.makeGridMazePattern())
+                            )
+                        )
+                    }
+                }
+                item(name = "Graph layout") {
+                    setOnAction {
+                        mazeTabPaneView.root.tabs.add(
+                            MazeTab(
+                                GraphMazeController(Maze.makeGraphMazePattern())
+                            )
+                        )
                     }
                 }
             }
@@ -39,7 +52,9 @@ class TopBar : Fragment() {
                     if(files.isNotEmpty()) {
                         val file = files[0]
                         mazeControllerProperty.get()?.mazeNameProperty?.set(file.name)
-                        mazeControllerProperty.get()?.saveMazeInFile(file) // FIXME make button unlickable when maze dont exist
+                        mazeControllerProperty.get()?.let {
+                            MazeController.saveMazeControllerInFile(it, file)
+                        }
                     }
                 }
             }
@@ -48,10 +63,9 @@ class TopBar : Fragment() {
                     val files = chooseFile(title = "Choose file to load maze", filters = emptyArray(), mode = FileChooserMode.Single)
                     if(files.isNotEmpty()) {
                         val file = files[0]
-                        val newMaze = Maze.makeGridMazePattern() // In these place might be any configuration of maze,
-                        // because after loading from file it will be rewritten anyway
-                        newMaze.loadFromFile(file)
-                        mazeTabPaneView.root.tabs.add(MazeTab(GridMazeController(newMaze).also {
+                        val loadMazeController = MazeController.loadMazeControllerFromFile(file)
+                        loadMazeController.rewriteMaze()
+                        mazeTabPaneView.root.tabs.add(MazeTab(loadMazeController.also {
                             it.mazeNameProperty.set(file.name)
                         }))
                     }

@@ -1,12 +1,11 @@
 package com.mazerunner.view.maze.grid
 
-import com.mazerunner.controller.maze.grid.GridMazeController
-import javafx.scene.Parent
+import javafx.scene.control.ScrollPane
 import tornadofx.Fragment
 import tornadofx.scrollpane
 
 class GridMazeFragment: Fragment() {
 
-    override val root: Parent = scrollpane(fitToWidth = true, fitToHeight = true)
+    override val root: ScrollPane = scrollpane(fitToWidth = true, fitToHeight = true)
 
 }

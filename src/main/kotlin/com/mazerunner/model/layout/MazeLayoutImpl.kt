@@ -39,6 +39,8 @@ class MazeLayoutImpl(
             writeInt(stateProperty.get().ordinal)
             writeInt(rooms.size)
             rooms.forEach {
+                writeInt(it.hashCode())
+                writeInt(MazeRoom.MazeRoomImplementationToId[it::class]!!)
                 it.writeExternal(objectOutput)
             }
             writeInt(doors.size)

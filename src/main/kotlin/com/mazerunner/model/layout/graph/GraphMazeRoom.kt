@@ -10,7 +10,7 @@ import java.io.ObjectOutput
 
 class GraphMazeRoom(
     initialPosition: Point2D
-): MazeRoom {
+) : MazeRoom {
 
     val positionProperty: SimpleObjectProperty<Point2D> = SimpleObjectProperty(initialPosition)
 
@@ -18,11 +18,21 @@ class GraphMazeRoom(
         MazeRoomStateWithInfo<Any>(null, MazeRoomState.UNKNOWN)
     ) // TODO serialize this property
 
-    override fun writeExternal(p0: ObjectOutput?) {
-        TODO("Not yet implemented")
+    override fun writeExternal(objectOutput: ObjectOutput?) {
+        objectOutput?.apply {
+            writeDouble(positionProperty.get().x)
+            writeDouble(positionProperty.get().y)
+        }
     }
 
-    override fun readExternal(p0: ObjectInput?) {
-        TODO("Not yet implemented")
+    override fun readExternal(objectInput: ObjectInput?) {
+        objectInput?.apply {
+            positionProperty.set(
+                Point2D(
+                    objectInput.readDouble(),
+                    objectInput.readDouble()
+                )
+            )
+        }
     }
 }

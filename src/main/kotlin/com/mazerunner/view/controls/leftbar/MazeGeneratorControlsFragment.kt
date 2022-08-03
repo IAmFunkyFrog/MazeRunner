@@ -1,6 +1,6 @@
-package com.mazerunner.view.controls.leftbar.grid
+package com.mazerunner.view.controls.leftbar
 
-import com.mazerunner.controller.maze.grid.GridMazeController
+import com.mazerunner.controller.maze.MazeController
 import com.mazerunner.view.controls.ControlsStylesheet
 import com.mazerunner.view.controls.space
 import javafx.scene.Parent
@@ -9,8 +9,8 @@ import tornadofx.addClass
 import tornadofx.button
 import tornadofx.vbox
 
-class GridMazeGeneratorControlsFragment(
-    private val controller: GridMazeController
+class MazeGeneratorControlsFragment(
+    private val controller: MazeController<*>
 ) : Fragment() {
 
     override val root: Parent = vbox {

@@ -1,6 +1,6 @@
 package com.mazerunner.view
 
-import com.mazerunner.controller.maze.grid.GridMazeController
+import com.mazerunner.controller.maze.graph.GraphMazeController
 import com.mazerunner.model.Maze
 import com.mazerunner.view.controls.TopBar
 import tornadofx.View
@@ -16,7 +16,7 @@ class MainView : View() {
     }
 
     init {
-        mazeTabPaneView.root.tabs.add(MazeTab(GridMazeController(Maze.makeGridMazePattern()))) // FIXME TEST CODE
+        mazeTabPaneView.root.tabs.add(MazeTab(GraphMazeController(Maze.makeGraphMazePattern()))) // FIXME TEST CODE
         mazeTabPaneView.root.selectionModel.selectFirst()
     }
 }

@@ -1,6 +1,5 @@
 package com.mazerunner.model.layout.grid
 
-import com.mazerunner.model.Maze
 import com.mazerunner.model.layout.MazeRoom
 import com.mazerunner.model.layout.MazeRoomState
 import com.mazerunner.model.layout.MazeRoomStateWithInfo
@@ -30,8 +29,6 @@ class GridMazeRoom(
     val borderProperty = SimpleIntegerProperty(15)
     override fun writeExternal(objectOutput: ObjectOutput?) {
         objectOutput?.apply {
-            writeInt(this@GridMazeRoom.hashCode())
-            writeInt(Maze.MazeRoomImplementationToId[this@GridMazeRoom::class]!!)
             writeInt(x)
             writeInt(y)
             writeInt(borderProperty.get())

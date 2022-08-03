@@ -1,6 +1,6 @@
-package com.mazerunner.view.controls.leftbar.grid
+package com.mazerunner.view.controls.leftbar
 
-import com.mazerunner.controller.maze.grid.GridMazeController
+import com.mazerunner.controller.maze.MazeController
 import com.mazerunner.model.runner.BFSMazeRunnerFactory
 import com.mazerunner.model.runner.MazeRunnerFactory
 import com.mazerunner.model.runner.RandomMazeRunnerFactory
@@ -11,8 +11,8 @@ import javafx.collections.FXCollections
 import javafx.scene.Parent
 import tornadofx.*
 
-class GridMazeRunnerSelectorFragment(
-    private val controller: GridMazeController
+class MazeRunnerSelectorFragment(
+    private val controller: MazeController<*>
 ) : Fragment() {
 
     private val factories = FXCollections.observableList(

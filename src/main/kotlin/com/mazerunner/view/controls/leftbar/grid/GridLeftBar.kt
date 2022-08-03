@@ -2,6 +2,9 @@ package com.mazerunner.view.controls.leftbar.grid
 
 import com.mazerunner.controller.maze.grid.GridMazeController
 import com.mazerunner.model.layout.MazeLayoutState
+import com.mazerunner.view.controls.leftbar.MazeGeneratorControlsFragment
+import com.mazerunner.view.controls.leftbar.MazeRunnerControlsFragment
+import com.mazerunner.view.controls.leftbar.MazeRunnerSelectorFragment
 import javafx.beans.property.SimpleBooleanProperty
 import javafx.scene.Parent
 import tornadofx.Fragment
@@ -41,17 +44,17 @@ class GridLeftBar(
 
     override val root: Parent = vbox {
         add(GridMazeGeneratorSelectorFragment(gridMazeController).root)
-        add(GridMazeGeneratorControlsFragment(gridMazeController).root.visibleWhen { // TODO create visibleAndManagedWhen ext function
+        add(MazeGeneratorControlsFragment(gridMazeController).root.visibleWhen { // TODO create visibleAndManagedWhen ext function
             generatorControlsVisibilityProperty
         }.apply {
             managedProperty().bind(visibleProperty())
         })
-        add(GridMazeRunnerSelectorFragment(gridMazeController).root.visibleWhen {
+        add(MazeRunnerSelectorFragment(gridMazeController).root.visibleWhen {
             runnerControlsVisibilityProperty
         }.apply {
             managedProperty().bind(visibleProperty())
         })
-        add(GridMazeRunnerControlsFragment(gridMazeController).root.visibleWhen {
+        add(MazeRunnerControlsFragment(gridMazeController).root.visibleWhen {
             runnerControlsVisibilityProperty
         }.apply {
             managedProperty().bind(visibleProperty())

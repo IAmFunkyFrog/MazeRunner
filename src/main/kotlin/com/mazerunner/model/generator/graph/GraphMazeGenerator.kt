@@ -5,7 +5,6 @@ import com.mazerunner.model.layout.MazeLayout
 import com.mazerunner.model.layout.MazeLayoutImpl
 import com.mazerunner.model.layout.MazeLayoutState
 import com.mazerunner.model.layout.graph.GraphMazeRoom
-import com.mazerunner.model.layout.grid.GridMazeRoom
 import javafx.geometry.Point2D
 
 abstract class GraphMazeGenerator(
@@ -21,8 +20,8 @@ abstract class GraphMazeGenerator(
 
         for (i in 0 until roomsCount) {
             arrayList.add(GraphMazeRoom(Point2D(
-                Math.random() * 500, // FIXME hardcode is bad decision
-                Math.random() * 500
+                Math.random() * 1000 + 50, // FIXME hardcode is bad decision
+                Math.random() * 600 + 50
             )))
         }
 
