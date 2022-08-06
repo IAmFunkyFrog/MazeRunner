@@ -73,6 +73,11 @@ class TopBar : Fragment() {
             }
         }
         menu("Help") {
+            mazeControllerProperty.onChange {
+                if(it == null) visibleProperty().set(false)
+                else visibleProperty().set(true)
+            }
+            visibleProperty().set(mazeControllerProperty.get() != null)
             item(name = "Show controls", "Ctrl+H") {
                 setOnAction {
                     mazeControllerProperty.get()?.helpFragment?.openModal(stageStyle = StageStyle.UTILITY)
