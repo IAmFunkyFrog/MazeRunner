@@ -17,7 +17,7 @@ fun GridMazeRoom.toggleBorderTo(gridMazeRoom: GridMazeRoom, mazeLayout: MazeLayo
 
     if(doorBetweenRooms == null) {
         val mazeDoor = MazeDoorImpl(this, gridMazeRoom)
-        mazeLayout.addDoors(mazeDoor)
+        mazeLayout.getDoors().add(mazeDoor)
     } else {
         mazeLayout.getDoors().remove(doorBetweenRooms)
     }

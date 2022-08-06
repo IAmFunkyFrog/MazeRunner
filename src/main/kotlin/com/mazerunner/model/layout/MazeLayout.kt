@@ -17,8 +17,4 @@ interface MazeLayout : Externalizable {
 
     fun getDoors(): ObservableList<MazeDoor>
 
-    fun addRooms(vararg mazeRooms: MazeRoom) // FIXME redundant method
-
-    fun addDoors(vararg mazeDoors: MazeDoor) // FIXME redundant method
-
 }

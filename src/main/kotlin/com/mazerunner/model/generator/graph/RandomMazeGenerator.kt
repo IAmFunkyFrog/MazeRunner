@@ -47,7 +47,7 @@ class RandomMazeGenerator(
             return false
         }
 
-        if (Math.random() < randomFactor) mazeLayout.addDoors(MazeDoorImpl(currentRoom, lastSeen))
+        if (Math.random() < randomFactor) mazeLayout.getDoors().add(MazeDoorImpl(currentRoom, lastSeen))
 
         seenPairs.add(Pair(currentRoom, lastSeen))
         lastSeen.stateProperty.set(MazeRoomStateWithInfo(null, MazeRoomState.UNKNOWN))

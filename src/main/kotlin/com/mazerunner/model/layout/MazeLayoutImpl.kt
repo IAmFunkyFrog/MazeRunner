@@ -22,18 +22,6 @@ class MazeLayoutImpl(
 
     override fun getDoors(): ObservableList<MazeDoor> = doors
 
-    override fun addRooms(vararg mazeRooms: MazeRoom) {
-        rooms.addAll(mazeRooms)
-    }
-
-    override fun addDoors(vararg mazeDoors: MazeDoor) {
-        mazeDoors.forEach {
-            if(!rooms.contains(it.getRooms().first) || !rooms.contains(it.getRooms().second)) throw RuntimeException("Rooms from door are not presented in layout")
-        }
-
-        doors.addAll(mazeDoors)
-    }
-
     override fun writeExternal(objectOutput: ObjectOutput?) {
         objectOutput?.apply {
             writeInt(stateProperty.get().ordinal)

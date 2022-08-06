@@ -23,10 +23,10 @@ abstract class Maze protected constructor(
 
     fun getMazeDoors() = mazeLayout.getDoors()
 
-    fun addMazeRooms(vararg mazeRooms: MazeRoom) = mazeLayout.addRooms(*mazeRooms)
+    fun addMazeRooms(vararg mazeRooms: MazeRoom) = mazeLayout.getRooms().addAll(*mazeRooms)
 
     fun addMazeDoors(vararg mazeDoors: MazeDoor) {
-        mazeLayout.addDoors(*mazeDoors)
+        mazeLayout.getDoors().addAll(*mazeDoors)
 
         val currentRoom = getMazeRooms().firstOrNull {
             it.stateProperty.get().mazeRoomState == MazeRoomState.CURRENT
