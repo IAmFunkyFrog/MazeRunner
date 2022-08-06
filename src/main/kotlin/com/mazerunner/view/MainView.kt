@@ -1,7 +1,5 @@
 package com.mazerunner.view
 
-import com.mazerunner.controller.maze.graph.GraphMazeController
-import com.mazerunner.model.Maze
 import com.mazerunner.view.controls.TopBar
 import tornadofx.View
 import tornadofx.borderpane
@@ -13,10 +11,5 @@ class MainView : View() {
     override val root = borderpane {
         top = TopBar().root
         center = mazeTabPaneView.root
-    }
-
-    init {
-        mazeTabPaneView.root.tabs.add(MazeTab(GraphMazeController(Maze.makeGraphMazePattern()))) // FIXME TEST CODE
-        mazeTabPaneView.root.selectionModel.selectFirst()
     }
 }
