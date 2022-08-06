@@ -1,11 +1,13 @@
 package com.mazerunner.view.maze.grid
 
 import com.mazerunner.controller.maze.grid.GridMazeRoomController
-import javafx.event.EventTarget
+import javafx.geometry.Insets
 import javafx.scene.Parent
-import javafx.scene.control.Label
 import javafx.scene.text.Font
-import tornadofx.*
+import tornadofx.Fragment
+import tornadofx.label
+import tornadofx.scrollpane
+import tornadofx.vbox
 
 class GridMazeHelpFragment : Fragment() {
 
@@ -13,11 +15,12 @@ class GridMazeHelpFragment : Fragment() {
 
     override val root: Parent = scrollpane {
         content = vbox {
-            paddedLabel("After maze generated:").apply {
+            padding = Insets(paddingWidth)
+            label("After maze generated:").apply {
                 font = Font(headerFontSize)
             }
             for (command in controller.commandList) {
-                paddedLabel("${command.getDescription()}: $command")
+                label("${command.getDescription()}: $command")
             }
         }
     }
@@ -25,13 +28,7 @@ class GridMazeHelpFragment : Fragment() {
     companion object {
 
         private const val headerFontSize = 30.0
-        private const val paddingWidth = 20
-
-        private fun EventTarget.paddedLabel(text: String, op: Label.() -> Unit = {}): Label {
-            return Label(text).apply {
-                padding = insets(paddingWidth)
-            }.attachTo(this, op)
-        }
+        private const val paddingWidth = 20.0
 
     }
 }

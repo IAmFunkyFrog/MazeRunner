@@ -27,7 +27,7 @@ class MazeGeneratorControlsFragment(
             }
         }
         space(15.0, 0.0)
-        button("Set maze generated") {
+        button("Go to runner controls") {
             setOnAction {
                 controller.setMazeLayoutGenerated()
             }
