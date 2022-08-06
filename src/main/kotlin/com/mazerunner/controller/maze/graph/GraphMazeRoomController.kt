@@ -7,7 +7,6 @@ import com.mazerunner.model.layout.MazeLayoutState
 import com.mazerunner.view.maze.graph.GraphMazeRoomShape
 import com.mazerunner.view.maze.graph.GraphMazeStylesheet
 import javafx.geometry.Point2D
-import javafx.scene.input.InputEvent
 import javafx.scene.input.MouseEvent
 import tornadofx.Controller
 import tornadofx.addClass
@@ -18,42 +17,34 @@ class GraphMazeRoomController : Controller() {
 
     private var lastClickedGraphRoom: GraphMazeRoomShape? = null
 
-    val commandListDrag: List<InputCommand<Pair<Maze, GraphMazeRoomShape>>> = listOf(
-        object: InputCommand<Pair<Maze, GraphMazeRoomShape>> {
-            override val callback: (Pair<Maze, GraphMazeRoomShape>, InputEvent) -> Unit = { (_, shape), inputEvent ->
+    val commandListDrag: List<InputCommand<Pair<Maze, GraphMazeRoomShape>, MouseEvent>> = listOf(
+        InputCommand.makeInputCommand(
+            callback = { (_, shape), mouseEvent ->
                 shape.graphMazeRoom.positionProperty.set(
-                    with(inputEvent as MouseEvent) {
-                        Point2D(x, y)
-                    }
+                    Point2D(mouseEvent.x, mouseEvent.y)
                 )
-            }
-
-            override fun check(inputEvent: InputEvent) = inputEvent is MouseEvent &&
-                    !inputEvent.isStillSincePress
-
-            override fun getDescription() = "Move maze room"
-
-            override fun toString() = "Left mouse hold + move mouse"
-
-        }
+            },
+            check = {
+                !it.isStillSincePress
+            },
+            description = "Move maze room",
+            commandName = "Left mouse hold + move mouse"
+        )
     )
 
-    val commandListMouse: List<InputCommand<Pair<Maze, GraphMazeRoomShape>>> = listOf(
-        object: InputCommand<Pair<Maze, GraphMazeRoomShape>> {
-            override val callback: (Pair<Maze, GraphMazeRoomShape>, InputEvent) -> Unit = { (maze, shape), _ ->
+    val commandListMouse: List<InputCommand<Pair<Maze, GraphMazeRoomShape>, MouseEvent>> = listOf(
+        InputCommand.makeInputCommand(
+            callback = { (maze, shape), _ ->
                 maze.setMazeRunnerOnRoom(shape.graphMazeRoom)
-            }
-
-            override fun check(inputEvent: InputEvent) = inputEvent is MouseEvent &&
-                    inputEvent.isPrimaryButtonDown && inputEvent.isShiftDown
-
-            override fun getDescription() = "Set maze runner on maze room"
-
-            override fun toString() = "Left mouse click + Shift"
-
-        },
-        object: InputCommand<Pair<Maze, GraphMazeRoomShape>> {
-            override val callback: (Pair<Maze, GraphMazeRoomShape>, InputEvent) -> Unit = { (maze, shape), _ ->
+            },
+            check = {
+                it.isPrimaryButtonDown && it.isShiftDown
+            },
+            description = "Set maze runner on maze room",
+            commandName = "Left mouse click + Shift"
+        ),
+        InputCommand.makeInputCommand(
+            callback = { (maze, shape), _ ->
                 lastClickedGraphRoom?.let { graphRoomShape ->
                     val door = maze.getMazeDoors().firstOrNull {
                         it.getRooms().first == graphRoomShape.graphMazeRoom && it.getRooms().second == shape.graphMazeRoom
@@ -65,31 +56,25 @@ class GraphMazeRoomController : Controller() {
                         maze.getMazeDoors().remove(door)
                     }
                 }
-            }
-
-            override fun check(inputEvent: InputEvent) = inputEvent is MouseEvent &&
-                    inputEvent.isPrimaryButtonDown && inputEvent.isControlDown
-
-            override fun getDescription() = "Toggle path between rooms"
-
-            override fun toString() = "Left mouse click + Ctrl"
-
-        },
-        object: InputCommand<Pair<Maze, GraphMazeRoomShape>> {
-            override val callback: (Pair<Maze, GraphMazeRoomShape>, InputEvent) -> Unit = { (_, shape), _ ->
+            },
+            check = {
+                it.isPrimaryButtonDown && it.isControlDown
+            },
+            description = "Toggle path between rooms",
+            commandName = "Left mouse click + Ctrl"
+        ),
+        InputCommand.makeInputCommand(
+            callback = { (_, shape), _ ->
                 lastClickedGraphRoom?.removeClass(GraphMazeStylesheet.selectedGraphMazeRoom)
                 lastClickedGraphRoom = shape
                 shape.addClass(GraphMazeStylesheet.selectedGraphMazeRoom)
-            }
-
-            override fun check(inputEvent: InputEvent) = inputEvent is MouseEvent &&
-                    inputEvent.isPrimaryButtonDown
-
-            override fun getDescription() = "Choose maze room"
-
-            override fun toString() = "Left mouse click"
-
-        }
+            },
+            check = {
+                it.isPrimaryButtonDown
+            },
+            description = "Choose maze room",
+            commandName = "Left mouse click"
+        )
     )
 
     fun onGraphMazeRoomClicked(maze: Maze, graphMazeRoomShape: GraphMazeRoomShape, event: MouseEvent) {
